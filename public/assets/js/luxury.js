@@ -46,7 +46,7 @@
     });
   });
 
-  /* ── Reveal animations (single IO, no deps) ── */
+  /* ── Reveal & stagger animations (single IO, no deps) ── */
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver(entries => {
       entries.forEach(en => {
@@ -55,10 +55,26 @@
           io.unobserve(en.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('[data-reveal], [data-stagger]').forEach(el => io.observe(el));
   } else {
-    document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('in'));
+    document.querySelectorAll('[data-reveal], [data-stagger]').forEach(el => el.classList.add('in'));
+  }
+
+  /* ── Scroll-linked hero parallax (CSS transform only — cheap) ── */
+  const heroBg = document.querySelector('.va-hero__bg img, .va-hero__bg video');
+  if (heroBg) {
+    let ticking = false;
+    const onScrollHero = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = Math.min(160, window.scrollY * 0.25);
+        heroBg.style.transform = `translate3d(0, ${y}px, 0) scale(1.04)`;
+        ticking = false;
+      });
+    };
+    window.addEventListener('scroll', onScrollHero, { passive: true });
   }
 
   /* ── Counters ──────────────────────────── */
@@ -88,15 +104,66 @@
     counters.forEach(c => cIo.observe(c));
   }
 
+  /* ── Property image sliders ────────────── */
+  document.querySelectorAll('[data-pslider]').forEach(slider => {
+    const slides = slider.querySelectorAll('.va-pslider__slide');
+    const dots   = slider.querySelectorAll('.va-pslider__dot');
+    const total  = slides.length;
+    if (total < 2) return;
+    let cur = 0;
+    let timer = null;
+
+    const go = (i) => {
+      cur = (i + total) % total;
+      slides.forEach((s, idx) => s.classList.toggle('is-active', idx === cur));
+      dots.forEach((d, idx) => d.classList.toggle('is-active', idx === cur));
+    };
+    const next = () => go(cur + 1);
+    const prev = () => go(cur - 1);
+
+    const start = () => { stop(); timer = setInterval(next, 3500); };
+    const stop  = () => { if (timer) { clearInterval(timer); timer = null; } };
+
+    slider.querySelector('.va-pslider__nav--prev')?.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); prev(); start(); });
+    slider.querySelector('.va-pslider__nav--next')?.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); next(); start(); });
+    dots.forEach(d => d.addEventListener('click', e => {
+      e.preventDefault(); e.stopPropagation();
+      go(parseInt(d.dataset.i, 10) || 0);
+      start();
+    }));
+
+    // Auto-advance on hover, pause on leave
+    const card = slider.closest('.va-card, .va-featured__item');
+    if (card) {
+      card.addEventListener('mouseenter', start);
+      card.addEventListener('mouseleave', stop);
+    }
+  });
+
   /* ── Property search tab toggle ────────── */
-  document.querySelectorAll('.va-search__tabs').forEach(tabs => {
-    const buttons = tabs.querySelectorAll('.va-search__tab');
+  document.querySelectorAll('.va-search__tabs, .va-hero__filter-tabs, .va-prop-filters__tabs, .va-quicksearch__tabs').forEach(tabs => {
+    const buttons = tabs.querySelectorAll('.va-search__tab, .va-hero__filter-tab, .va-prop-filters__tab, .va-quicksearch__tab');
     buttons.forEach(b => b.addEventListener('click', () => {
       buttons.forEach(x => x.classList.remove('active'));
       b.classList.add('active');
-      const hidden = tabs.closest('form').querySelector('input[name="listing"]');
-      if (hidden) hidden.value = b.dataset.listing;
+      const form = tabs.closest('form');
+      const hidden = form && form.querySelector('input[name="listing"]');
+      if (hidden) hidden.value = b.dataset.listing || '';
     }));
+  });
+
+  /* ── Auto-submit on sort/filter change (Properties page) ── */
+  const filterForm = document.getElementById('filterForm');
+  if (filterForm) {
+    const sortSelect = filterForm.querySelector('select[name="sort"]');
+    if (sortSelect) sortSelect.addEventListener('change', () => filterForm.submit());
+  }
+
+  /* ── Floating-label "has-value" toggle for selects/native ── */
+  document.querySelectorAll('.va-input select').forEach(sel => {
+    const sync = () => sel.closest('.va-input')?.classList.toggle('has-value', !!sel.value);
+    sync();
+    sel.addEventListener('change', sync);
   });
 
   /* ── Chatbot ──────────────────────────── */

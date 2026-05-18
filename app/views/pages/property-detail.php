@@ -2,7 +2,7 @@
 <?php $view->section('content'); ?>
 
 <!-- Gallery hero -->
-<section style="padding:120px 0 0;background:#000">
+<section style="padding:120px 0 0;background:var(--surface-2)">
   <div class="container-lg">
     <div data-reveal>
       <a href="/properties" class="va-link-arrow" style="margin-bottom:18px">

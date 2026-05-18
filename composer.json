@@ -26,8 +26,11 @@
         "sort-packages": true,
         "optimize-autoloader": true,
         "platform": {
-            "php": "8.1.0",
+            "php": "8.0.0",
             "ext-mongodb": "1.18.0"
+        },
+        "audit": {
+            "abandoned": "ignore"
         }
     },
     "scripts": {

@@ -105,6 +105,33 @@ final class AdminController extends Controller
 
     private function propertyData(): array {
         $r = $this->request->all();
+
+        // Build the image list in slot order: prefer freshly uploaded files,
+        // otherwise keep whatever URL was already in that slot (existing_images).
+        $images   = [];
+        $existing = $r['existing_images'] ?? [];
+        $files    = $_FILES['images'] ?? null;
+        $slotCount = max(count($existing), is_array($files['tmp_name'] ?? null) ? count($files['tmp_name']) : 0);
+
+        for ($i = 0; $i < $slotCount; $i++) {
+            $newTmp = $files['tmp_name'][$i] ?? '';
+            $newErr = $files['error'][$i] ?? UPLOAD_ERR_NO_FILE;
+            if (!empty($newTmp) && $newErr === UPLOAD_ERR_OK) {
+                $url = \App\Helpers\Cloudinary::upload($newTmp, 'vastuanand/properties');
+                if ($url) { $images[] = $url; continue; }
+            }
+            if (!empty($existing[$i])) {
+                $images[] = trim((string)$existing[$i]);
+            }
+        }
+
+        // Optional power-user URL textarea, appended after the 4 slot images
+        $extra = array_filter(array_map('trim', explode("\n", $r['gallery_urls'] ?? '')));
+        $images = array_values(array_unique(array_merge($images, $extra)));
+
+        $cover   = $images[0] ?? '';
+        $gallery = array_slice($images, 1);
+
         return [
             'title'       => trim($r['title'] ?? ''),
             'slug'        => slug($r['slug'] ?? $r['title'] ?? ''),
@@ -117,8 +144,8 @@ final class AdminController extends Controller
             'area'        => (float)($r['area'] ?? 0),
             'price'       => (float)($r['price'] ?? 0),
             'description' => $r['description'] ?? '',
-            'cover'       => $r['cover'] ?? '',
-            'gallery'     => array_filter(array_map('trim', explode("\n", $r['gallery'] ?? ''))),
+            'cover'       => $cover,
+            'gallery'     => $gallery,
             'tags'        => array_filter(array_map('trim', explode(',', $r['tags'] ?? ''))),
             'amenities'   => array_filter(array_map('trim', explode(',', $r['amenities'] ?? ''))),
             'featured'    => isset($r['featured']),
@@ -171,28 +198,66 @@ final class AdminController extends Controller
     }
     public function blogCreate(): void { $this->view('admin.blogs.form', ['title'=>'New Blog', 'blog'=>null]); }
     public function blogStore(): void {
-        $r = $this->request->all();
-        Blog::create([
-            'title' => $r['title'], 'slug' => slug($r['slug'] ?? $r['title']),
-            'excerpt' => $r['excerpt'] ?? '', 'body' => $r['body'] ?? '',
-            'cover' => $r['cover'] ?? '', 'category' => $r['category'] ?? 'General',
-            'published' => isset($r['published']),
-            'publishedAt' => new \MongoDB\BSON\UTCDateTime(),
-        ]);
+        $data = $this->blogData();
+        $data['publishedAt'] = new \MongoDB\BSON\UTCDateTime();
+        Blog::create($data);
+        $this->flash('success', 'Blog post created.');
         $this->redirect('/admin/blogs');
     }
     public function blogEdit(string $id): void { $this->view('admin.blogs.form', ['title'=>'Edit Blog','blog'=>Blog::find($id)]); }
     public function blogUpdate(string $id): void {
-        $r = $this->request->all();
-        Blog::update($id, [
-            'title'=>$r['title'],'slug'=>slug($r['slug'] ?? $r['title']),
-            'excerpt'=>$r['excerpt'] ?? '','body'=>$r['body'] ?? '',
-            'cover'=>$r['cover'] ?? '','category'=>$r['category'] ?? 'General',
-            'published'=>isset($r['published']),
-        ]);
+        Blog::update($id, $this->blogData());
+        $this->flash('success', 'Blog post updated.');
         $this->redirect('/admin/blogs');
     }
     public function blogDelete(string $id): void { Blog::delete($id); $this->redirect('/admin/blogs'); }
+
+    /**
+     * Build a blog data payload from the current request.
+     * Handles single cover upload (cover_file) and multi-image gallery (gallery_files[] + gallery_urls).
+     */
+    private function blogData(): array {
+        $r = $this->request->all();
+
+        // Cover: prefer freshly uploaded file, fall back to URL field
+        $cover = trim((string)($r['cover'] ?? ''));
+        $coverTmp = $_FILES['cover_file']['tmp_name'] ?? '';
+        $coverErr = $_FILES['cover_file']['error']    ?? UPLOAD_ERR_NO_FILE;
+        if (!empty($coverTmp) && $coverErr === UPLOAD_ERR_OK) {
+            $uploaded = \App\Helpers\Cloudinary::upload($coverTmp, 'vastuanand/blogs');
+            if ($uploaded) $cover = $uploaded;
+        }
+
+        // Gallery: combine uploaded files + URL list (one per line)
+        $gallery = [];
+        $urlLines = preg_split('/\r?\n/', trim((string)($r['gallery_urls'] ?? '')));
+        foreach ($urlLines as $line) {
+            $line = trim($line);
+            if ($line !== '') $gallery[] = $line;
+        }
+        if (!empty($_FILES['gallery_files']) && is_array($_FILES['gallery_files']['tmp_name'] ?? null)) {
+            foreach ($_FILES['gallery_files']['tmp_name'] as $i => $tmp) {
+                $err = $_FILES['gallery_files']['error'][$i] ?? UPLOAD_ERR_NO_FILE;
+                if (!empty($tmp) && $err === UPLOAD_ERR_OK) {
+                    $uploaded = \App\Helpers\Cloudinary::upload($tmp, 'vastuanand/blogs');
+                    if ($uploaded) $gallery[] = $uploaded;
+                }
+            }
+        }
+        $gallery = array_values(array_unique(array_filter($gallery)));
+
+        return [
+            'title'     => $r['title'] ?? '',
+            'slug'      => slug($r['slug'] ?? $r['title'] ?? ''),
+            'excerpt'   => $r['excerpt'] ?? '',
+            'body'      => $r['body'] ?? '',
+            'cover'     => $cover,
+            'gallery'   => $gallery,
+            'category'  => $r['category'] ?? 'General',
+            'readTime'  => trim((string)($r['readTime'] ?? '')),
+            'published' => isset($r['published']),
+        ];
+    }
 
     public function testimonials(): void {
         $items = Testimonial::all([], ['sort'=>['createdAt'=>-1]]);

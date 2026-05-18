@@ -1,4 +1,4 @@
-<?php $view->extend('layouts.main'); ?>
+﻿<?php $view->extend('layouts.main'); ?>
 <?php $view->section('content'); ?>
 
 <section style="padding:140px 0 60px">
@@ -17,7 +17,7 @@
           <span><?= e($f['q']) ?></span>
           <span style="color:var(--gold);font-size:24px;line-height:1">+</span>
         </summary>
-        <div style="padding:0 26px 22px;color:var(--pearl-dim);line-height:1.8"><?= e($f['a']) ?></div>
+        <div style="padding:0 26px 22px;color:var(--slate);line-height:1.8"><?= e($f['a']) ?></div>
       </details>
     <?php endforeach; ?>
   </div>

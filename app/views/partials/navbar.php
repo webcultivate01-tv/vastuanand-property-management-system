@@ -17,7 +17,7 @@
         '/properties' => 'Properties',
         '/services' => 'Services',
         '/luxury-homes' => 'Luxury Homes',
-        '/blog' => 'Insights',
+        '/blog' => 'Blog',
         '/contact' => 'Contact',
       ];
       foreach ($links as $href => $label):

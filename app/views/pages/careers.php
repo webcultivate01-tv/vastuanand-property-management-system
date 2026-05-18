@@ -1,7 +1,7 @@
-<?php $view->extend('layouts.main'); ?>
+﻿<?php $view->extend('layouts.main'); ?>
 <?php $view->section('content'); ?>
 
-<section style="padding:140px 0 60px;background:linear-gradient(180deg,#000,var(--ink-2))">
+<section style="padding:140px 0 60px;background:linear-gradient(180deg,var(--surface-2),var(--bg))">
   <div class="container" data-reveal>
     <span class="eyebrow">CAREERS</span>
     <h1 class="display" style="font-size:clamp(44px,5vw,72px);margin:18px 0 16px">Build a career with <span class="gold" style="font-style:italic">Mumbai's most trusted</span> real estate firm.</h1>

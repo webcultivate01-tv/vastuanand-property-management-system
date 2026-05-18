@@ -1,7 +1,7 @@
 ﻿<?php $view->extend('layouts.main'); $s = $service; ?>
 <?php $view->section('content'); ?>
 
-<section style="padding:140px 0 80px;background:linear-gradient(180deg,#000,var(--ink-2))">
+<section style="padding:140px 0 80px;background:linear-gradient(180deg,var(--surface-2),var(--bg))">
   <div class="container" data-reveal>
     <a href="/services" class="va-link-arrow"><svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.4" style="transform:rotate(180deg)"><path d="M0 5h13M9 1l4 4-4 4"/></svg>All Services</a>
     <h1 class="display" style="font-size:clamp(40px,5vw,72px);margin:24px 0 16px"><?= e($s['title']) ?></h1>

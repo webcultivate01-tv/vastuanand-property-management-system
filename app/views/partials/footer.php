@@ -27,7 +27,7 @@
           <li><a href="/services">Services</a></li>
           <li><a href="/luxury-homes">Luxury Homes</a></li>
           <li><a href="/nri">NRI Services</a></li>
-          <li><a href="/blog">Insights</a></li>
+          <li><a href="/blog">Blog</a></li>
           <li><a href="/careers">Careers</a></li>
         </ul>
       </div>

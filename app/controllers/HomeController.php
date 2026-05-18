@@ -10,7 +10,7 @@ final class HomeController extends Controller
 {
     public function index(): void
     {
-        $featured     = Property::featured(6) ?: $this->fallbackProperties();
+        $featured     = array_slice(Property::featured(6) ?: $this->fallbackProperties(), 0, 3);
         $testimonials = Testimonial::approved(6) ?: $this->fallbackTestimonials();
         $blogs        = Blog::latest(3) ?: $this->fallbackBlogs();
 
@@ -35,12 +35,51 @@ final class HomeController extends Controller
     private function fallbackProperties(): array
     {
         return [
-            ['id' => 'demo-1', 'slug' => 'luxury-apartment-bandra-west', 'title' => 'Luxury Apartment in Bandra West', 'location' => 'Bandra West, Mumbai', 'listing' => 'sale', 'type' => 'Apartment', 'bhk' => 4, 'area' => 2400, 'price' => 95000000, 'cover' => asset('images/p1.jpg'), 'tags' => ['Sea Facing', 'Ready to Move'], 'featured' => true],
-            ['id' => 'demo-2', 'slug' => 'premium-villa-juhu',           'title' => 'Premium Villa in Juhu',           'location' => 'Juhu, Mumbai',         'listing' => 'sale', 'type' => 'Villa',     'bhk' => 5, 'area' => 5200, 'price' => 280000000,'cover' => asset('images/p2.jpg'), 'tags' => ['Private Pool', 'Garden'], 'featured' => true],
-            ['id' => 'demo-3', 'slug' => 'commercial-office-bkc',        'title' => 'Commercial Office Space in BKC', 'location' => 'BKC, Mumbai',          'listing' => 'lease','type' => 'Commercial','bhk' => 0, 'area' => 3500, 'price' => 18000000, 'cover' => asset('images/p3.jpg'), 'tags' => ['Grade A', 'IT Ready'], 'featured' => true],
-            ['id' => 'demo-4', 'slug' => 'spacious-family-home-powai',   'title' => 'Spacious Family Home in Powai',  'location' => 'Powai, Mumbai',        'listing' => 'sale', 'type' => 'Apartment', 'bhk' => 3, 'area' => 1750, 'price' => 42000000, 'cover' => asset('images/p4.jpg'), 'tags' => ['Lake View'], 'featured' => true],
-            ['id' => 'demo-5', 'slug' => 'luxury-farmhouse-panvel',      'title' => 'Luxury Farmhouse near Panvel',   'location' => 'Panvel, Navi Mumbai',  'listing' => 'sale', 'type' => 'Farmhouse', 'bhk' => 4, 'area' => 8000, 'price' => 65000000, 'cover' => asset('images/p5.jpg'), 'tags' => ['Greenery', 'Private Pool'], 'featured' => true],
-            ['id' => 'demo-6', 'slug' => 'studio-lower-parel',           'title' => 'Compact Studio in Lower Parel',  'location' => 'Lower Parel, Mumbai',  'listing' => 'rent', 'type' => 'Studio',    'bhk' => 1, 'area' => 480,  'price' => 75000,    'cover' => asset('images/p6.jpg'), 'tags' => ['Furnished'], 'featured' => true],
+            ['id' => 'demo-1', 'slug' => 'luxury-apartment-bandra-west', 'title' => 'Luxury Apartment in Bandra West', 'location' => 'Bandra West, Mumbai', 'listing' => 'sale', 'type' => 'Apartment', 'bhk' => 4, 'area' => 2400, 'price' => 95000000,
+                'cover' => 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80',
+                    'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80',
+                    'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80',
+                ],
+                'tags' => ['Sea Facing', 'Ready to Move'], 'featured' => true],
+            ['id' => 'demo-2', 'slug' => 'premium-villa-juhu', 'title' => 'Premium Villa in Juhu', 'location' => 'Juhu, Mumbai', 'listing' => 'sale', 'type' => 'Villa', 'bhk' => 5, 'area' => 5200, 'price' => 280000000,
+                'cover' => 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=900&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=80',
+                    'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=900&q=80',
+                    'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80',
+                ],
+                'tags' => ['Private Pool', 'Garden'], 'featured' => true],
+            ['id' => 'demo-3', 'slug' => 'commercial-office-bkc', 'title' => 'Commercial Office Space in BKC', 'location' => 'BKC, Mumbai', 'listing' => 'lease', 'type' => 'Commercial', 'bhk' => 0, 'area' => 3500, 'price' => 18000000,
+                'cover' => 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80',
+                    'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=900&q=80',
+                    'https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&w=900&q=80',
+                ],
+                'tags' => ['Grade A', 'IT Ready'], 'featured' => true],
+            ['id' => 'demo-4', 'slug' => 'spacious-family-home-powai', 'title' => 'Spacious Family Home in Powai', 'location' => 'Powai, Mumbai', 'listing' => 'sale', 'type' => 'Apartment', 'bhk' => 3, 'area' => 1750, 'price' => 42000000,
+                'cover' => 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=900&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=900&q=80',
+                    'https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=900&q=80',
+                ],
+                'tags' => ['Lake View'], 'featured' => true],
+            ['id' => 'demo-5', 'slug' => 'luxury-farmhouse-panvel', 'title' => 'Luxury Farmhouse near Panvel', 'location' => 'Panvel, Navi Mumbai', 'listing' => 'sale', 'type' => 'Farmhouse', 'bhk' => 4, 'area' => 8000, 'price' => 65000000,
+                'cover' => 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=900&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=900&q=80',
+                    'https://images.unsplash.com/photo-1542621334-a254cf47733d?auto=format&fit=crop&w=900&q=80',
+                ],
+                'tags' => ['Greenery', 'Private Pool'], 'featured' => true],
+            ['id' => 'demo-6', 'slug' => 'studio-lower-parel', 'title' => 'Compact Studio in Lower Parel', 'location' => 'Lower Parel, Mumbai', 'listing' => 'rent', 'type' => 'Studio', 'bhk' => 1, 'area' => 480, 'price' => 75000,
+                'cover' => 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=900&q=80',
+                    'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80',
+                ],
+                'tags' => ['Furnished'], 'featured' => true],
         ];
     }
 

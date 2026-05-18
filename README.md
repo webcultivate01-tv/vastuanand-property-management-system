@@ -128,7 +128,7 @@ Default admin credentials come from `.env` — change them before going live.
 | `/properties` · `/properties/buy` · `/properties/rent` · `/properties/commercial` | Filterable listings |
 | `/property/{slug}` | Dynamic property detail |
 | `/luxury-homes` · `/commercial` · `/nri` · `/property-management` | Vertical landing pages |
-| `/blog` · `/blog/{slug}` | Insights |
+| `/blog` · `/blog/{slug}` | Blog (formerly Insights) — multi-image gallery support |
 | `/gallery` · `/testimonials` · `/careers` · `/faq` | Brand pages |
 | `/contact` (GET/POST) | Contact + form submit |
 | `/inquiry` (POST) | Property inquiry |

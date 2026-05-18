@@ -9,13 +9,17 @@ final class BlogController extends Controller
 {
     public function index(): void
     {
-        $page    = max(1, (int)($_GET['page'] ?? 1));
-        $result  = Blog::paginate(['published' => true], $page, 9, ['publishedAt' => -1]);
+        $page   = max(1, (int)($_GET['page'] ?? 1));
+        $filter = ['published' => true];
+        if (!empty($_GET['category'])) $filter['category'] = $_GET['category'];
+
+        $result = Blog::paginate($filter, $page, 9, ['publishedAt' => -1]);
         if (empty($result['data'])) $result['data'] = $this->fallback();
+
         $this->view('pages.blog', [
-            'title'  => 'Real Estate Blog — Vastu Anand',
+            'title'       => 'Blog — Vastu Anand',
             'description' => 'Mumbai property market insights, investment guides, legal articles & home-buying advice from Vastu Anand experts.',
-            'result' => $result,
+            'result'      => $result,
         ]);
     }
 
