@@ -1,0 +1,27 @@
+# Dependencies (installed by Hostinger build step)
+/vendor/
+
+# Environment & local config (NEVER commit secrets)
+.env
+.env.local
+.env.*.local
+
+# Runtime
+/storage/logs/*.log
+/public/uploads/*
+!/public/uploads/.gitkeep
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+*.log
+
+# Composer
+composer.phar
+
+# Build artifacts
+/dist/
+/build/

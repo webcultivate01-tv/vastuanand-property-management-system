@@ -4,6 +4,52 @@ This is the step-by-step that **always works** on Hostinger **Premium / Business
 
 ---
 
+## ⚡ If your Git Auto-Deploy build is failing
+
+Hostinger's build container runs `composer install` but it **does not have the `ext-mongodb` PHP extension** loaded. The Mongo driver requires it, so the resolver fails before any files are installed → "Build failed".
+
+The repo's [composer.json](composer.json) already includes a **platform override**:
+
+```json
+"config": {
+  "platform": {
+    "php": "8.1.0",
+    "ext-mongodb": "1.18.0"
+  }
+}
+```
+
+This tells Composer to assume the extension is available at runtime (it IS on the web PHP — just not in the build container). After pulling the latest commit, retry the deploy.
+
+### If the build still fails, pick ONE of these three workarounds
+
+**Option 1 — Set a custom build command in hPanel (preferred)**
+hPanel → Websites → Manage → **Git** → **Build command** (or "Custom build"):
+```
+composer install --no-dev --optimize-autoloader --ignore-platform-reqs
+```
+
+**Option 2 — Disable auto-build entirely**
+hPanel → Git → toggle **Auto-Deployment** to off, then run composer manually over SSH (Business plan only):
+```bash
+ssh u123456789@yoursite.com -p 65002
+cd ~/domains/yoursite.com/public_html
+composer install --no-dev --optimize-autoloader
+```
+
+**Option 3 — Commit `vendor/` to git**
+On a machine that has PHP 8 + ext-mongodb installed:
+```bash
+composer install --no-dev --optimize-autoloader
+# Edit .gitignore — remove the /vendor/ line
+git add vendor/
+git commit -m "Vendored deps for Hostinger"
+git push
+```
+Hostinger will just sync files, no build step needed.
+
+---
+
 ## 1. Set the correct document root (most critical step)
 
 The default Hostinger document root is `public_html/`. But our front controller lives in `public_html/public/`. You **must** change the document root, or use the root `.htaccess` shim we ship (see step 4).
