@@ -1,0 +1,42 @@
+# ─────────────────────────────────────────────────────────────
+# VASTU ANAND — Hostinger / shared-hosting root .htaccess
+# Use this when your document root is the project root (e.g. public_html/)
+# and NOT /public.
+#
+# It routes /assets/* and /uploads/* to /public/* and sends every other
+# request through public/index.php (the real front controller).
+# ─────────────────────────────────────────────────────────────
+
+RewriteEngine On
+
+# 1) Block direct access to sensitive files
+RewriteRule ^(\.env|composer\.json|composer\.lock|\.git|app/|routes/|database/|storage/) - [F,L]
+
+# 2) Forward asset / upload requests into /public
+RewriteRule ^assets/(.*)$  public/assets/$1  [L]
+RewriteRule ^uploads/(.*)$ public/uploads/$1 [L]
+RewriteRule ^favicon\.ico$ public/assets/images/favicon.svg [L]
+
+# 3) If the file exists in /public, serve it from there
+RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f
+RewriteRule ^(.*)$ public/$1 [L]
+
+# 4) Everything else → front controller
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ public/index.php [L]
+
+# Security headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
+
+# Gzip
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>

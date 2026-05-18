@@ -1,0 +1,31 @@
+{
+    "name": "vastuanand/real-estate",
+    "description": "Vastu Anand — Premium Luxury Real Estate Platform (Mumbai). MVC PHP 8 + MongoDB Atlas + JWT.",
+    "type": "project",
+    "license": "Proprietary",
+    "require": {
+        "php": ">=8.0",
+        "ext-mongodb": "*",
+        "mongodb/mongodb": "^1.17",
+        "firebase/php-jwt": "^6.10",
+        "vlucas/phpdotenv": "^5.6",
+        "phpmailer/phpmailer": "^6.9",
+        "ramsey/uuid": "^4.7"
+    },
+    "autoload": {
+        "classmap": [
+            "app/"
+        ],
+        "files": [
+            "app/helpers/functions.php"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "scripts": {
+        "seed": "php database/seed.php",
+        "serve": "php -S localhost:8000 -t public"
+    }
+}

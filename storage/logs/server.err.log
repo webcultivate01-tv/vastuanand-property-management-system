@@ -1,0 +1,553 @@
+[Mon May 18 13:01:12 2026] PHP 8.0.30 Development Server (http://localhost:8000) started
+[Mon May 18 13:01:12 2026] [::1]:53461 Accepted
+[Mon May 18 13:01:12 2026] [::1]:53461 [200]: GET /
+[Mon May 18 13:01:12 2026] [::1]:53461 Closing
+[Mon May 18 13:01:12 2026] [::1]:54774 Accepted
+[Mon May 18 13:01:12 2026] [::1]:57127 Accepted
+[Mon May 18 13:01:12 2026] [::1]:54774 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:01:12 2026] [::1]:57127 [404]: GET /assets/images/about-1.jpg - No such file or directory
+[Mon May 18 13:01:12 2026] [::1]:57127 Closing
+[Mon May 18 13:01:12 2026] [::1]:54774 Closing
+[Mon May 18 13:01:12 2026] [::1]:58094 Accepted
+[Mon May 18 13:01:12 2026] [::1]:58094 [404]: GET /assets/images/hero.jpg - No such file or directory
+[Mon May 18 13:01:12 2026] [::1]:58094 Closing
+[Mon May 18 13:01:12 2026] [::1]:56965 Accepted
+[Mon May 18 13:01:12 2026] [::1]:56965 [404]: GET /assets/images/mumbai-night.jpg - No such file or directory
+[Mon May 18 13:01:12 2026] [::1]:56965 Closing
+[Mon May 18 13:01:13 2026] [::1]:52107 Accepted
+[Mon May 18 13:01:13 2026] [::1]:57713 Accepted
+[Mon May 18 13:01:13 2026] [::1]:57713 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:01:13 2026] [::1]:57713 Closing
+[Mon May 18 13:01:14 2026] [::1]:56966 Accepted
+[Mon May 18 13:01:14 2026] [::1]:56966 [200]: GET /
+[Mon May 18 13:01:14 2026] [::1]:56966 Closing
+[Mon May 18 13:01:24 2026] [::1]:52107 [200]: GET /
+[Mon May 18 13:01:24 2026] [::1]:52107 Closing
+[Mon May 18 13:01:24 2026] [::1]:65385 Accepted
+[Mon May 18 13:01:24 2026] [::1]:65385 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:01:24 2026] [::1]:65385 Closing
+[Mon May 18 13:01:24 2026] [::1]:65525 Accepted
+[Mon May 18 13:01:24 2026] [::1]:56680 Accepted
+[Mon May 18 13:01:24 2026] [::1]:65525 [404]: GET /assets/images/hero.jpg - No such file or directory
+[Mon May 18 13:01:24 2026] [::1]:56680 [404]: GET /assets/images/about-1.jpg - No such file or directory
+[Mon May 18 13:01:24 2026] [::1]:65525 Closing
+[Mon May 18 13:01:24 2026] [::1]:56680 Closing
+[Mon May 18 13:01:24 2026] [::1]:53071 Accepted
+[Mon May 18 13:01:24 2026] [::1]:53071 [404]: GET /assets/images/mumbai-night.jpg - No such file or directory
+[Mon May 18 13:01:24 2026] [::1]:53071 Closing
+[Mon May 18 13:01:24 2026] [::1]:59911 Accepted
+[Mon May 18 13:01:24 2026] [::1]:59911 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:01:24 2026] [::1]:59911 Closing
+[Mon May 18 13:01:41 2026] [::1]:60302 Accepted
+[Mon May 18 13:01:41 2026] [::1]:60302 [200]: GET /
+[Mon May 18 13:01:41 2026] [::1]:60302 Closing
+[Mon May 18 13:01:41 2026] [::1]:57162 Accepted
+[Mon May 18 13:01:41 2026] [::1]:57162 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:01:41 2026] [::1]:57162 Closing
+[Mon May 18 13:01:42 2026] [::1]:61824 Accepted
+[Mon May 18 13:01:42 2026] [::1]:56079 Accepted
+[Mon May 18 13:01:42 2026] [::1]:61824 [404]: GET /assets/images/hero.jpg - No such file or directory
+[Mon May 18 13:01:42 2026] [::1]:56079 [404]: GET /assets/images/about-1.jpg - No such file or directory
+[Mon May 18 13:01:42 2026] [::1]:61824 Closing
+[Mon May 18 13:01:42 2026] [::1]:56079 Closing
+[Mon May 18 13:01:42 2026] [::1]:51612 Accepted
+[Mon May 18 13:01:42 2026] [::1]:56039 Accepted
+[Mon May 18 13:01:42 2026] [::1]:51612 [404]: GET /assets/images/p1.jpg - No such file or directory
+[Mon May 18 13:01:42 2026] [::1]:56039 [404]: GET /assets/images/p2.jpg - No such file or directory
+[Mon May 18 13:01:42 2026] [::1]:51612 Closing
+[Mon May 18 13:01:42 2026] [::1]:56039 Closing
+[Mon May 18 13:01:42 2026] [::1]:59368 Accepted
+[Mon May 18 13:01:42 2026] [::1]:59368 [404]: GET /assets/images/p3.jpg - No such file or directory
+[Mon May 18 13:01:42 2026] [::1]:59368 Closing
+[Mon May 18 13:01:42 2026] [::1]:50060 Accepted
+[Mon May 18 13:01:42 2026] [::1]:51440 Accepted
+[Mon May 18 13:01:42 2026] [::1]:61027 Accepted
+[Mon May 18 13:01:42 2026] [::1]:53981 Accepted
+[Mon May 18 13:01:42 2026] [::1]:50751 Accepted
+[Mon May 18 13:01:42 2026] [::1]:50060 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:01:42 2026] [::1]:51440 [404]: GET /assets/images/p4.jpg - No such file or directory
+[Mon May 18 13:01:42 2026] [::1]:61027 [404]: GET /assets/images/p5.jpg - No such file or directory
+[Mon May 18 13:01:42 2026] [::1]:53981 [404]: GET /assets/images/p6.jpg - No such file or directory
+[Mon May 18 13:01:42 2026] [::1]:50751 [404]: GET /assets/images/mumbai-night.jpg - No such file or directory
+[Mon May 18 13:01:42 2026] [::1]:51440 Closing
+[Mon May 18 13:01:42 2026] [::1]:61027 Closing
+[Mon May 18 13:01:42 2026] [::1]:53981 Closing
+[Mon May 18 13:01:42 2026] [::1]:50751 Closing
+[Mon May 18 13:01:42 2026] [::1]:50060 Closing
+[Mon May 18 13:01:42 2026] [::1]:59619 Accepted
+[Mon May 18 13:01:42 2026] [::1]:64901 Accepted
+[Mon May 18 13:01:42 2026] [::1]:64172 Accepted
+[Mon May 18 13:01:42 2026] [::1]:59619 [404]: GET /assets/images/b1.jpg - No such file or directory
+[Mon May 18 13:01:42 2026] [::1]:64901 [404]: GET /assets/images/b2.jpg - No such file or directory
+[Mon May 18 13:01:42 2026] [::1]:64172 [404]: GET /assets/images/b3.jpg - No such file or directory
+[Mon May 18 13:01:42 2026] [::1]:59619 Closing
+[Mon May 18 13:01:42 2026] [::1]:64901 Closing
+[Mon May 18 13:01:42 2026] [::1]:64172 Closing
+[Mon May 18 13:02:32 2026] [::1]:58505 Accepted
+[Mon May 18 13:02:32 2026] [::1]:58505 [200]: GET /
+[Mon May 18 13:02:32 2026] [::1]:58505 Closing
+[Mon May 18 13:02:32 2026] [::1]:64558 Accepted
+[Mon May 18 13:02:32 2026] [::1]:64558 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:02:32 2026] [::1]:64558 Closing
+[Mon May 18 13:02:32 2026] [::1]:54139 Accepted
+[Mon May 18 13:02:32 2026] [::1]:54139 [404]: GET /assets/images/hero.jpg - No such file or directory
+[Mon May 18 13:02:32 2026] [::1]:57434 Accepted
+[Mon May 18 13:02:32 2026] [::1]:54139 Closing
+[Mon May 18 13:02:32 2026] [::1]:57434 [404]: GET /assets/images/about-1.jpg - No such file or directory
+[Mon May 18 13:02:32 2026] [::1]:57434 Closing
+[Mon May 18 13:02:32 2026] [::1]:56184 Accepted
+[Mon May 18 13:02:32 2026] [::1]:51767 Accepted
+[Mon May 18 13:02:32 2026] [::1]:56184 [404]: GET /assets/images/mumbai-night.jpg - No such file or directory
+[Mon May 18 13:02:32 2026] [::1]:51767 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:02:32 2026] [::1]:56184 Closing
+[Mon May 18 13:02:32 2026] [::1]:51767 Closing
+[Mon May 18 13:02:47 2026] [::1]:61001 Accepted
+[Mon May 18 13:02:47 2026] [::1]:61001 [200]: GET /
+[Mon May 18 13:02:47 2026] [::1]:61001 Closing
+[Mon May 18 13:02:47 2026] [::1]:58552 Accepted
+[Mon May 18 13:02:47 2026] [::1]:65008 Accepted
+[Mon May 18 13:02:47 2026] [::1]:58552 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:02:47 2026] [::1]:64374 Accepted
+[Mon May 18 13:02:47 2026] [::1]:65008 [404]: GET /assets/images/hero.jpg - No such file or directory
+[Mon May 18 13:02:47 2026] [::1]:64374 [404]: GET /assets/images/about-1.jpg - No such file or directory
+[Mon May 18 13:02:47 2026] [::1]:65008 Closing
+[Mon May 18 13:02:47 2026] [::1]:58552 Closing
+[Mon May 18 13:02:47 2026] [::1]:64374 Closing
+[Mon May 18 13:02:47 2026] [::1]:53113 Accepted
+[Mon May 18 13:02:47 2026] [::1]:58320 Accepted
+[Mon May 18 13:02:47 2026] [::1]:53113 [404]: GET /assets/images/mumbai-night.jpg - No such file or directory
+[Mon May 18 13:02:47 2026] [::1]:58320 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:02:47 2026] [::1]:53113 Closing
+[Mon May 18 13:02:47 2026] [::1]:58320 Closing
+[Mon May 18 13:03:01 2026] [::1]:60776 Accepted
+[Mon May 18 13:03:02 2026] [::1]:60776 [200]: GET /
+[Mon May 18 13:03:02 2026] [::1]:60776 Closing
+[Mon May 18 13:03:02 2026] [::1]:60368 Accepted
+[Mon May 18 13:03:02 2026] [::1]:60368 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:03:02 2026] [::1]:60368 Closing
+[Mon May 18 13:03:02 2026] [::1]:51142 Accepted
+[Mon May 18 13:03:02 2026] [::1]:59453 Accepted
+[Mon May 18 13:03:02 2026] [::1]:51142 [404]: GET /assets/images/hero.jpg - No such file or directory
+[Mon May 18 13:03:02 2026] [::1]:59453 [404]: GET /assets/images/about-1.jpg - No such file or directory
+[Mon May 18 13:03:02 2026] [::1]:51142 Closing
+[Mon May 18 13:03:02 2026] [::1]:59453 Closing
+[Mon May 18 13:03:02 2026] [::1]:60259 Accepted
+[Mon May 18 13:03:02 2026] [::1]:58560 Accepted
+[Mon May 18 13:03:02 2026] [::1]:60259 [404]: GET /assets/images/mumbai-night.jpg - No such file or directory
+[Mon May 18 13:03:02 2026] [::1]:58560 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:03:02 2026] [::1]:60259 Closing
+[Mon May 18 13:03:02 2026] [::1]:58560 Closing
+[Mon May 18 13:03:07 2026] [::1]:65048 Accepted
+[Mon May 18 13:03:07 2026] [::1]:50121 Accepted
+[Mon May 18 13:03:07 2026] [::1]:50284 Accepted
+[Mon May 18 13:03:07 2026] [::1]:65048 [404]: GET /assets/images/p1.jpg - No such file or directory
+[Mon May 18 13:03:07 2026] [::1]:50121 [404]: GET /assets/images/p2.jpg - No such file or directory
+[Mon May 18 13:03:07 2026] [::1]:50284 [404]: GET /assets/images/p3.jpg - No such file or directory
+[Mon May 18 13:03:07 2026] [::1]:65048 Closing
+[Mon May 18 13:03:07 2026] [::1]:50121 Closing
+[Mon May 18 13:03:07 2026] [::1]:50284 Closing
+[Mon May 18 13:03:14 2026] [::1]:50613 Accepted
+[Mon May 18 13:03:16 2026] [::1]:50613 [200]: GET /about
+[Mon May 18 13:03:16 2026] [::1]:50613 Closing
+[Mon May 18 13:03:16 2026] [::1]:59703 Accepted
+[Mon May 18 13:03:16 2026] [::1]:61725 Accepted
+[Mon May 18 13:03:16 2026] [::1]:59703 [404]: GET /assets/images/p4.jpg - No such file or directory
+[Mon May 18 13:03:16 2026] [::1]:49806 Accepted
+[Mon May 18 13:03:16 2026] [::1]:61725 [404]: GET /assets/images/p5.jpg - No such file or directory
+[Mon May 18 13:03:16 2026] [::1]:59703 Closing
+[Mon May 18 13:03:16 2026] [::1]:49806 [404]: GET /assets/images/p6.jpg - No such file or directory
+[Mon May 18 13:03:16 2026] [::1]:61725 Closing
+[Mon May 18 13:03:16 2026] [::1]:49806 Closing
+[Mon May 18 13:03:16 2026] [::1]:50608 Accepted
+[Mon May 18 13:03:16 2026] [::1]:50608 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:03:16 2026] [::1]:50608 Closing
+[Mon May 18 13:03:16 2026] [::1]:62660 Accepted
+[Mon May 18 13:03:16 2026] [::1]:53744 Accepted
+[Mon May 18 13:03:16 2026] [::1]:62660 [404]: GET /assets/images/about-hero.jpg - No such file or directory
+[Mon May 18 13:03:16 2026] [::1]:53744 [404]: GET /assets/images/about-2.jpg - No such file or directory
+[Mon May 18 13:03:16 2026] [::1]:62660 Closing
+[Mon May 18 13:03:16 2026] [::1]:53744 Closing
+[Mon May 18 13:03:16 2026] [::1]:55298 Accepted
+[Mon May 18 13:03:16 2026] [::1]:55298 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:03:16 2026] [::1]:55298 Closing
+[Mon May 18 13:03:17 2026] [::1]:55518 Accepted
+[Mon May 18 13:03:17 2026] [::1]:55518 [404]: GET /assets/images/favicon.svg - No such file or directory
+[Mon May 18 13:03:17 2026] [::1]:55518 Closing
+[Mon May 18 13:03:28 2026] [::1]:52161 Accepted
+[Mon May 18 13:03:28 2026] [::1]:52161 [200]: GET /
+[Mon May 18 13:03:28 2026] [::1]:52161 Closing
+[Mon May 18 13:03:28 2026] [::1]:52364 Accepted
+[Mon May 18 13:03:28 2026] [::1]:52364 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:03:28 2026] [::1]:58754 Accepted
+[Mon May 18 13:03:28 2026] [::1]:59173 Accepted
+[Mon May 18 13:03:28 2026] [::1]:58754 [404]: GET /assets/images/hero.jpg - No such file or directory
+[Mon May 18 13:03:28 2026] [::1]:59173 [404]: GET /assets/images/about-1.jpg - No such file or directory
+[Mon May 18 13:03:28 2026] [::1]:52364 Closing
+[Mon May 18 13:03:28 2026] [::1]:58754 Closing
+[Mon May 18 13:03:28 2026] [::1]:59173 Closing
+[Mon May 18 13:03:28 2026] [::1]:64230 Accepted
+[Mon May 18 13:03:28 2026] [::1]:54420 Accepted
+[Mon May 18 13:03:28 2026] [::1]:64230 [404]: GET /assets/images/mumbai-night.jpg - No such file or directory
+[Mon May 18 13:03:28 2026] [::1]:54420 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:03:28 2026] [::1]:64230 Closing
+[Mon May 18 13:03:28 2026] [::1]:54420 Closing
+[Mon May 18 13:03:31 2026] [::1]:49988 Accepted
+[Mon May 18 13:03:31 2026] [::1]:57654 Accepted
+[Mon May 18 13:03:31 2026] [::1]:49988 [200]: GET /
+[Mon May 18 13:03:31 2026] [::1]:49988 Closing
+[Mon May 18 13:03:32 2026] [::1]:57654 [200]: GET /
+[Mon May 18 13:03:32 2026] [::1]:57654 Closing
+[Mon May 18 13:03:32 2026] [::1]:59061 Accepted
+[Mon May 18 13:03:34 2026] [::1]:59061 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:03:34 2026] [::1]:59061 Closing
+[Mon May 18 13:03:34 2026] [::1]:51292 Accepted
+[Mon May 18 13:03:34 2026] [::1]:64059 Accepted
+[Mon May 18 13:03:34 2026] [::1]:51292 [404]: GET /assets/images/hero.jpg - No such file or directory
+[Mon May 18 13:03:34 2026] [::1]:64059 [404]: GET /assets/images/about-1.jpg - No such file or directory
+[Mon May 18 13:03:34 2026] [::1]:51292 Closing
+[Mon May 18 13:03:34 2026] [::1]:64059 Closing
+[Mon May 18 13:03:35 2026] [::1]:56866 Accepted
+[Mon May 18 13:03:35 2026] [::1]:56866 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:03:35 2026] [::1]:59720 Accepted
+[Mon May 18 13:03:35 2026] [::1]:50851 Accepted
+[Mon May 18 13:03:35 2026] [::1]:59720 [404]: GET /assets/images/hero.jpg - No such file or directory
+[Mon May 18 13:03:35 2026] [::1]:50851 [404]: GET /assets/images/about-1.jpg - No such file or directory
+[Mon May 18 13:03:35 2026] [::1]:56866 Closing
+[Mon May 18 13:03:35 2026] [::1]:59720 Closing
+[Mon May 18 13:03:35 2026] [::1]:50851 Closing
+[Mon May 18 13:03:35 2026] [::1]:54087 Accepted
+[Mon May 18 13:03:35 2026] [::1]:61482 Accepted
+[Mon May 18 13:03:35 2026] [::1]:54087 [404]: GET /assets/images/mumbai-night.jpg - No such file or directory
+[Mon May 18 13:03:35 2026] [::1]:61482 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:03:35 2026] [::1]:54087 Closing
+[Mon May 18 13:03:35 2026] [::1]:61482 Closing
+[Mon May 18 13:03:38 2026] [::1]:61483 Accepted
+[Mon May 18 13:03:38 2026] [::1]:61483 [200]: GET /
+[Mon May 18 13:03:38 2026] [::1]:61483 Closing
+[Mon May 18 13:03:45 2026] [::1]:63379 Accepted
+[Mon May 18 13:03:45 2026] [::1]:63379 [200]: GET /services
+[Mon May 18 13:03:45 2026] [::1]:63379 Closing
+[Mon May 18 13:03:45 2026] [::1]:64738 Accepted
+[Mon May 18 13:03:45 2026] [::1]:64738 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:03:45 2026] [::1]:60257 Accepted
+[Mon May 18 13:03:45 2026] [::1]:60257 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:03:45 2026] [::1]:64738 Closing
+[Mon May 18 13:03:45 2026] [::1]:60257 Closing
+[Mon May 18 13:03:49 2026] [::1]:51496 Accepted
+[Mon May 18 13:03:49 2026] [::1]:51496 [200]: GET /properties
+[Mon May 18 13:03:49 2026] [::1]:51496 Closing
+[Mon May 18 13:03:49 2026] [::1]:61305 Accepted
+[Mon May 18 13:03:49 2026] [::1]:61305 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:03:49 2026] [::1]:61305 Closing
+[Mon May 18 13:03:49 2026] [::1]:59378 Accepted
+[Mon May 18 13:03:49 2026] [::1]:59378 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:03:49 2026] [::1]:59378 Closing
+[Mon May 18 13:03:51 2026] [::1]:62942 Accepted
+[Mon May 18 13:03:51 2026] [::1]:62942 [200]: GET /about
+[Mon May 18 13:03:51 2026] [::1]:62942 Closing
+[Mon May 18 13:03:51 2026] [::1]:60003 Accepted
+[Mon May 18 13:03:51 2026] [::1]:60003 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:03:51 2026] [::1]:60003 Closing
+[Mon May 18 13:03:51 2026] [::1]:51048 Accepted
+[Mon May 18 13:03:51 2026] [::1]:53154 Accepted
+[Mon May 18 13:03:51 2026] [::1]:51048 [404]: GET /assets/images/about-hero.jpg - No such file or directory
+[Mon May 18 13:03:51 2026] [::1]:53154 [404]: GET /assets/images/about-2.jpg - No such file or directory
+[Mon May 18 13:03:51 2026] [::1]:51048 Closing
+[Mon May 18 13:03:51 2026] [::1]:53154 Closing
+[Mon May 18 13:03:51 2026] [::1]:62662 Accepted
+[Mon May 18 13:03:51 2026] [::1]:62662 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:03:51 2026] [::1]:62662 Closing
+[Mon May 18 13:03:52 2026] [::1]:50673 Accepted
+[Mon May 18 13:03:52 2026] [::1]:50673 [200]: GET /
+[Mon May 18 13:03:52 2026] [::1]:50673 Closing
+[Mon May 18 13:03:52 2026] [::1]:61778 Accepted
+[Mon May 18 13:03:52 2026] [::1]:61778 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:03:52 2026] [::1]:52112 Accepted
+[Mon May 18 13:03:52 2026] [::1]:52112 [404]: GET /assets/images/hero.jpg - No such file or directory
+[Mon May 18 13:03:52 2026] [::1]:57184 Accepted
+[Mon May 18 13:03:52 2026] [::1]:61778 Closing
+[Mon May 18 13:03:52 2026] [::1]:52112 Closing
+[Mon May 18 13:03:52 2026] [::1]:57184 [404]: GET /assets/images/about-1.jpg - No such file or directory
+[Mon May 18 13:03:52 2026] [::1]:57184 Closing
+[Mon May 18 13:03:52 2026] [::1]:52721 Accepted
+[Mon May 18 13:03:52 2026] [::1]:52721 [404]: GET /assets/images/mumbai-night.jpg - No such file or directory
+[Mon May 18 13:03:52 2026] [::1]:52721 Closing
+[Mon May 18 13:03:52 2026] [::1]:55091 Accepted
+[Mon May 18 13:03:52 2026] [::1]:55091 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:03:52 2026] [::1]:55091 Closing
+[Mon May 18 13:03:56 2026] [::1]:51959 Accepted
+[Mon May 18 13:03:56 2026] [::1]:51959 [200]: GET /contact
+[Mon May 18 13:03:56 2026] [::1]:51959 Closing
+[Mon May 18 13:03:56 2026] [::1]:53113 Accepted
+[Mon May 18 13:03:56 2026] [::1]:53113 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:03:56 2026] [::1]:53113 Closing
+[Mon May 18 13:03:56 2026] [::1]:58459 Accepted
+[Mon May 18 13:03:56 2026] [::1]:58459 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:03:56 2026] [::1]:58459 Closing
+[Mon May 18 13:03:57 2026] [::1]:53560 Accepted
+[Mon May 18 13:03:57 2026] [::1]:53560 [200]: GET /blog
+[Mon May 18 13:03:57 2026] [::1]:53560 Closing
+[Mon May 18 13:03:57 2026] [::1]:60115 Accepted
+[Mon May 18 13:03:57 2026] [::1]:60115 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:03:57 2026] [::1]:60115 Closing
+[Mon May 18 13:03:57 2026] [::1]:63635 Accepted
+[Mon May 18 13:03:57 2026] [::1]:63635 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:03:57 2026] [::1]:63635 Closing
+[Mon May 18 13:03:57 2026] [::1]:61809 Accepted
+[Mon May 18 13:03:57 2026] [::1]:61486 Accepted
+[Mon May 18 13:03:57 2026] [::1]:52476 Accepted
+[Mon May 18 13:03:57 2026] [::1]:61809 [404]: GET /assets/images/b1.jpg - No such file or directory
+[Mon May 18 13:03:57 2026] [::1]:61486 [404]: GET /assets/images/b2.jpg - No such file or directory
+[Mon May 18 13:03:57 2026] [::1]:52476 [404]: GET /assets/images/b3.jpg - No such file or directory
+[Mon May 18 13:03:57 2026] [::1]:61809 Closing
+[Mon May 18 13:03:57 2026] [::1]:61486 Closing
+[Mon May 18 13:03:57 2026] [::1]:52476 Closing
+[Mon May 18 13:04:01 2026] [::1]:58506 Accepted
+[Mon May 18 13:04:01 2026] [::1]:58506 [200]: GET /
+[Mon May 18 13:04:01 2026] [::1]:58506 Closing
+[Mon May 18 13:04:01 2026] [::1]:64765 Accepted
+[Mon May 18 13:04:01 2026] [::1]:64765 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:04:01 2026] [::1]:64765 Closing
+[Mon May 18 13:04:01 2026] [::1]:51253 Accepted
+[Mon May 18 13:04:01 2026] [::1]:56379 Accepted
+[Mon May 18 13:04:01 2026] [::1]:51253 [404]: GET /assets/images/hero.jpg - No such file or directory
+[Mon May 18 13:04:01 2026] [::1]:56379 [404]: GET /assets/images/about-1.jpg - No such file or directory
+[Mon May 18 13:04:01 2026] [::1]:51253 Closing
+[Mon May 18 13:04:01 2026] [::1]:56379 Closing
+[Mon May 18 13:04:01 2026] [::1]:58714 Accepted
+[Mon May 18 13:04:01 2026] [::1]:58714 [404]: GET /assets/images/mumbai-night.jpg - No such file or directory
+[Mon May 18 13:04:01 2026] [::1]:58714 Closing
+[Mon May 18 13:04:01 2026] [::1]:62787 Accepted
+[Mon May 18 13:04:01 2026] [::1]:62787 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:04:01 2026] [::1]:62787 Closing
+[Mon May 18 13:04:06 2026] [::1]:63728 Accepted
+[Mon May 18 13:04:06 2026] [::1]:63728 [302]: GET /admin/dashboard
+[Mon May 18 13:04:06 2026] [::1]:63728 Closing
+[Mon May 18 13:04:06 2026] [::1]:55110 Accepted
+[Mon May 18 13:04:06 2026] [::1]:55110 [200]: GET /admin/login
+[Mon May 18 13:04:06 2026] [::1]:55110 Closing
+[Mon May 18 13:04:06 2026] [::1]:61641 Accepted
+[Mon May 18 13:04:06 2026] [::1]:61641 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:04:06 2026] [::1]:61641 Closing
+[Mon May 18 13:04:10 2026] [::1]:65072 Accepted
+[Mon May 18 13:04:10 2026] [::1]:65072 [302]: POST /admin/login
+[Mon May 18 13:04:10 2026] [::1]:65072 Closing
+[Mon May 18 13:04:10 2026] [::1]:55762 Accepted
+[Mon May 18 13:04:10 2026] [::1]:55762 [200]: GET /admin/login
+[Mon May 18 13:04:10 2026] [::1]:55762 Closing
+[Mon May 18 13:04:10 2026] [::1]:63754 Accepted
+[Mon May 18 13:04:10 2026] [::1]:63754 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:04:10 2026] [::1]:63754 Closing
+[Mon May 18 13:05:22 2026] [::1]:49673 Accepted
+[Mon May 18 13:05:22 2026] [::1]:49673 [302]: POST /admin/login
+[Mon May 18 13:05:22 2026] [::1]:49673 Closing
+[Mon May 18 13:05:22 2026] [::1]:59727 Accepted
+[Mon May 18 13:05:22 2026] [::1]:59727 [200]: GET /admin/dashboard
+[Mon May 18 13:05:22 2026] [::1]:59727 Closing
+[Mon May 18 13:05:22 2026] [::1]:51017 Accepted
+[Mon May 18 13:05:22 2026] [::1]:51017 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:05:22 2026] [::1]:51017 Closing
+[Mon May 18 13:05:28 2026] [::1]:59974 Accepted
+[Mon May 18 13:05:29 2026] [::1]:59974 [200]: GET /admin/properties
+[Mon May 18 13:05:29 2026] [::1]:59974 Closing
+[Mon May 18 13:05:29 2026] [::1]:60994 Accepted
+[Mon May 18 13:05:29 2026] [::1]:60994 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:05:29 2026] [::1]:60994 Closing
+[Mon May 18 13:05:31 2026] [::1]:59594 Accepted
+[Mon May 18 13:05:32 2026] [::1]:59594 [200]: GET /admin/properties/create
+[Mon May 18 13:05:32 2026] [::1]:59594 Closing
+[Mon May 18 13:05:32 2026] [::1]:59424 Accepted
+[Mon May 18 13:05:32 2026] [::1]:59424 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:05:32 2026] [::1]:59424 Closing
+[Mon May 18 13:05:37 2026] [::1]:61792 Accepted
+[Mon May 18 13:05:37 2026] [::1]:61792 [200]: GET /admin/gallery
+[Mon May 18 13:05:37 2026] [::1]:61792 Closing
+[Mon May 18 13:05:37 2026] [::1]:62068 Accepted
+[Mon May 18 13:05:37 2026] [::1]:62068 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:05:37 2026] [::1]:62068 Closing
+[Mon May 18 13:05:38 2026] [::1]:53216 Accepted
+[Mon May 18 13:05:38 2026] [::1]:55140 Accepted
+[Mon May 18 13:05:38 2026] [::1]:53216 [200]: GET /admin/careers
+[Mon May 18 13:05:38 2026] [::1]:53216 Closing
+[Mon May 18 13:05:38 2026] [::1]:55140 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:05:38 2026] [::1]:55140 Closing
+[Mon May 18 13:05:41 2026] [::1]:64413 Accepted
+[Mon May 18 13:05:41 2026] [::1]:64413 [200]: GET /admin/settings
+[Mon May 18 13:05:41 2026] [::1]:64413 Closing
+[Mon May 18 13:05:41 2026] [::1]:57564 Accepted
+[Mon May 18 13:05:41 2026] [::1]:57564 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:05:41 2026] [::1]:57564 Closing
+[Mon May 18 13:05:42 2026] [::1]:51506 Accepted
+[Mon May 18 13:05:43 2026] [::1]:51506 [200]: GET /admin/popups
+[Mon May 18 13:05:43 2026] [::1]:51506 Closing
+[Mon May 18 13:05:43 2026] [::1]:58798 Accepted
+[Mon May 18 13:05:43 2026] [::1]:58798 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:05:43 2026] [::1]:58798 Closing
+[Mon May 18 13:05:44 2026] [::1]:57140 Accepted
+[Mon May 18 13:05:44 2026] [::1]:57140 [200]: GET /admin/careers
+[Mon May 18 13:05:44 2026] [::1]:57140 Closing
+[Mon May 18 13:05:44 2026] [::1]:54568 Accepted
+[Mon May 18 13:05:44 2026] [::1]:54568 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:05:44 2026] [::1]:54568 Closing
+[Mon May 18 13:05:49 2026] [::1]:60137 Accepted
+[Mon May 18 13:05:49 2026] [::1]:60137 [200]: GET /admin/dashboard
+[Mon May 18 13:05:49 2026] [::1]:60137 Closing
+[Mon May 18 13:05:49 2026] [::1]:57127 Accepted
+[Mon May 18 13:05:49 2026] [::1]:57127 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:05:49 2026] [::1]:57127 Closing
+[Mon May 18 13:05:57 2026] [::1]:58944 Accepted
+[Mon May 18 13:05:57 2026] [::1]:58944 [200]: GET /
+[Mon May 18 13:05:57 2026] [::1]:58944 Closing
+[Mon May 18 13:05:57 2026] [::1]:60596 Accepted
+[Mon May 18 13:05:57 2026] [::1]:60596 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:05:57 2026] [::1]:60596 Closing
+[Mon May 18 13:05:57 2026] [::1]:61733 Accepted
+[Mon May 18 13:05:57 2026] [::1]:62966 Accepted
+[Mon May 18 13:05:57 2026] [::1]:61733 [404]: GET /assets/images/hero.jpg - No such file or directory
+[Mon May 18 13:05:57 2026] [::1]:62966 [404]: GET /assets/images/about-1.jpg - No such file or directory
+[Mon May 18 13:05:57 2026] [::1]:61733 Closing
+[Mon May 18 13:05:57 2026] [::1]:62966 Closing
+[Mon May 18 13:05:57 2026] [::1]:59753 Accepted
+[Mon May 18 13:05:57 2026] [::1]:59753 [404]: GET /assets/images/mumbai-night.jpg - No such file or directory
+[Mon May 18 13:05:57 2026] [::1]:59753 Closing
+[Mon May 18 13:05:57 2026] [::1]:56848 Accepted
+[Mon May 18 13:05:57 2026] [::1]:56848 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:05:57 2026] [::1]:56848 Closing
+[Mon May 18 13:06:01 2026] [::1]:52444 Accepted
+[Mon May 18 13:06:02 2026] [::1]:52444 [200]: GET /properties
+[Mon May 18 13:06:02 2026] [::1]:52444 Closing
+[Mon May 18 13:06:02 2026] [::1]:63475 Accepted
+[Mon May 18 13:06:02 2026] [::1]:63475 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:06:02 2026] [::1]:63475 Closing
+[Mon May 18 13:06:02 2026] [::1]:52135 Accepted
+[Mon May 18 13:06:02 2026] [::1]:52135 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:06:02 2026] [::1]:52135 Closing
+[Mon May 18 13:06:03 2026] [::1]:53922 Accepted
+[Mon May 18 13:06:03 2026] [::1]:53922 [200]: GET /about
+[Mon May 18 13:06:03 2026] [::1]:53922 Closing
+[Mon May 18 13:06:03 2026] [::1]:51710 Accepted
+[Mon May 18 13:06:03 2026] [::1]:51710 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:06:03 2026] [::1]:51710 Closing
+[Mon May 18 13:06:03 2026] [::1]:49156 Accepted
+[Mon May 18 13:06:03 2026] [::1]:53986 Accepted
+[Mon May 18 13:06:03 2026] [::1]:49156 [404]: GET /assets/images/about-hero.jpg - No such file or directory
+[Mon May 18 13:06:03 2026] [::1]:53986 [404]: GET /assets/images/about-2.jpg - No such file or directory
+[Mon May 18 13:06:03 2026] [::1]:49156 Closing
+[Mon May 18 13:06:03 2026] [::1]:53986 Closing
+[Mon May 18 13:06:03 2026] [::1]:57312 Accepted
+[Mon May 18 13:06:03 2026] [::1]:57312 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:06:03 2026] [::1]:57312 Closing
+[Mon May 18 13:06:06 2026] [::1]:64804 Accepted
+[Mon May 18 13:06:07 2026] [::1]:64804 [200]: GET /
+[Mon May 18 13:06:07 2026] [::1]:64804 Closing
+[Mon May 18 13:06:07 2026] [::1]:51355 Accepted
+[Mon May 18 13:06:07 2026] [::1]:51355 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:06:07 2026] [::1]:51355 Closing
+[Mon May 18 13:06:07 2026] [::1]:50577 Accepted
+[Mon May 18 13:06:07 2026] [::1]:58895 Accepted
+[Mon May 18 13:06:07 2026] [::1]:50577 [404]: GET /assets/images/hero.jpg - No such file or directory
+[Mon May 18 13:06:07 2026] [::1]:58895 [404]: GET /assets/images/about-1.jpg - No such file or directory
+[Mon May 18 13:06:07 2026] [::1]:50577 Closing
+[Mon May 18 13:06:07 2026] [::1]:58895 Closing
+[Mon May 18 13:06:07 2026] [::1]:49673 Accepted
+[Mon May 18 13:06:07 2026] [::1]:49673 [404]: GET /assets/images/mumbai-night.jpg - No such file or directory
+[Mon May 18 13:06:07 2026] [::1]:49673 Closing
+[Mon May 18 13:06:07 2026] [::1]:56189 Accepted
+[Mon May 18 13:06:07 2026] [::1]:56189 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:06:07 2026] [::1]:56189 Closing
+[Mon May 18 13:06:11 2026] [::1]:50946 Accepted
+[Mon May 18 13:06:11 2026] [::1]:49254 Accepted
+[Mon May 18 13:06:11 2026] [::1]:61043 Accepted
+[Mon May 18 13:06:11 2026] [::1]:50946 [404]: GET /assets/images/p1.jpg - No such file or directory
+[Mon May 18 13:06:11 2026] [::1]:49254 [404]: GET /assets/images/p2.jpg - No such file or directory
+[Mon May 18 13:06:11 2026] [::1]:61043 [404]: GET /assets/images/p3.jpg - No such file or directory
+[Mon May 18 13:06:11 2026] [::1]:50946 Closing
+[Mon May 18 13:06:11 2026] [::1]:49254 Closing
+[Mon May 18 13:06:11 2026] [::1]:61043 Closing
+[Mon May 18 13:06:11 2026] [::1]:61492 Accepted
+[Mon May 18 13:06:11 2026] [::1]:57470 Accepted
+[Mon May 18 13:06:11 2026] [::1]:59006 Accepted
+[Mon May 18 13:06:11 2026] [::1]:61492 [404]: GET /assets/images/p4.jpg - No such file or directory
+[Mon May 18 13:06:11 2026] [::1]:57470 [404]: GET /assets/images/p5.jpg - No such file or directory
+[Mon May 18 13:06:11 2026] [::1]:59006 [404]: GET /assets/images/p6.jpg - No such file or directory
+[Mon May 18 13:06:11 2026] [::1]:61492 Closing
+[Mon May 18 13:06:11 2026] [::1]:57470 Closing
+[Mon May 18 13:06:11 2026] [::1]:59006 Closing
+[Mon May 18 13:06:44 2026] [::1]:49696 Accepted
+[Mon May 18 13:06:45 2026] [::1]:49696 [200]: GET /contact
+[Mon May 18 13:06:45 2026] [::1]:49696 Closing
+[Mon May 18 13:06:45 2026] [::1]:53048 Accepted
+[Mon May 18 13:06:45 2026] [::1]:53048 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:06:45 2026] [::1]:53048 Closing
+[Mon May 18 13:06:45 2026] [::1]:58395 Accepted
+[Mon May 18 13:06:45 2026] [::1]:58395 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:06:45 2026] [::1]:58395 Closing
+[Mon May 18 13:06:53 2026] [::1]:52951 Accepted
+[Mon May 18 13:06:53 2026] [::1]:52951 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:06:53 2026] [::1]:52951 Closing
+[Mon May 18 13:06:54 2026] [::1]:60091 Accepted
+[Mon May 18 13:06:54 2026] [::1]:60091 [404]: GET /.well-known/appspecific/com.chrome.devtools.json - No such file or directory
+[Mon May 18 13:06:54 2026] [::1]:60091 Closing
+[Mon May 18 13:13:36 2026] [::1]:51373 Accepted
+[Mon May 18 13:13:36 2026] [::1]:51373 [200]: GET /
+[Mon May 18 13:13:36 2026] [::1]:51373 Closing
+[Mon May 18 13:13:36 2026] [::1]:51896 Accepted
+[Mon May 18 13:13:36 2026] [::1]:51896 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:13:36 2026] [::1]:50829 Accepted
+[Mon May 18 13:13:36 2026] [::1]:54460 Accepted
+[Mon May 18 13:13:36 2026] [::1]:51896 Closing
+[Mon May 18 13:13:36 2026] [::1]:50829 [404]: GET /assets/images/hero.jpg - No such file or directory
+[Mon May 18 13:13:36 2026] [::1]:54460 [404]: GET /assets/images/about-1.jpg - No such file or directory
+[Mon May 18 13:13:36 2026] [::1]:50829 Closing
+[Mon May 18 13:13:36 2026] [::1]:54460 Closing
+[Mon May 18 13:13:36 2026] [::1]:49933 Accepted
+[Mon May 18 13:13:36 2026] [::1]:49933 [404]: GET /assets/images/mumbai-night.jpg - No such file or directory
+[Mon May 18 13:13:36 2026] [::1]:49933 Closing
+[Mon May 18 13:13:36 2026] [::1]:55929 Accepted
+[Mon May 18 13:13:36 2026] [::1]:55929 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:13:36 2026] [::1]:55929 Closing
+[Mon May 18 13:13:40 2026] [::1]:63252 Accepted
+[Mon May 18 13:13:40 2026] [::1]:50637 Accepted
+[Mon May 18 13:13:40 2026] [::1]:64871 Accepted
+[Mon May 18 13:13:40 2026] [::1]:56804 Accepted
+[Mon May 18 13:13:40 2026] [::1]:62262 Accepted
+[Mon May 18 13:13:40 2026] [::1]:63252 [404]: GET /assets/images/p1.jpg - No such file or directory
+[Mon May 18 13:13:40 2026] [::1]:60547 Accepted
+[Mon May 18 13:13:40 2026] [::1]:50637 [404]: GET /assets/images/p2.jpg - No such file or directory
+[Mon May 18 13:13:40 2026] [::1]:64871 [404]: GET /assets/images/p3.jpg - No such file or directory
+[Mon May 18 13:13:40 2026] [::1]:56804 [404]: GET /assets/images/p4.jpg - No such file or directory
+[Mon May 18 13:13:40 2026] [::1]:62262 [404]: GET /assets/images/p5.jpg - No such file or directory
+[Mon May 18 13:13:40 2026] [::1]:63252 Closing
+[Mon May 18 13:13:40 2026] [::1]:60547 [404]: GET /assets/images/p6.jpg - No such file or directory
+[Mon May 18 13:13:40 2026] [::1]:50637 Closing
+[Mon May 18 13:13:40 2026] [::1]:64871 Closing
+[Mon May 18 13:13:40 2026] [::1]:56804 Closing
+[Mon May 18 13:13:40 2026] [::1]:62262 Closing
+[Mon May 18 13:13:40 2026] [::1]:60547 Closing
+[Mon May 18 13:13:46 2026] [::1]:61675 Accepted
+[Mon May 18 13:13:46 2026] [::1]:64461 Accepted
+[Mon May 18 13:13:46 2026] [::1]:61675 [404]: GET /assets/images/b2.jpg - No such file or directory
+[Mon May 18 13:13:46 2026] [::1]:51311 Accepted
+[Mon May 18 13:13:46 2026] [::1]:64461 [404]: GET /assets/images/b3.jpg - No such file or directory
+[Mon May 18 13:13:46 2026] [::1]:61675 Closing
+[Mon May 18 13:13:46 2026] [::1]:51311 [404]: GET /assets/images/b1.jpg - No such file or directory
+[Mon May 18 13:13:46 2026] [::1]:64461 Closing
+[Mon May 18 13:13:46 2026] [::1]:51311 Closing
+[Mon May 18 13:13:49 2026] [::1]:53655 Accepted
+[Mon May 18 13:13:50 2026] [::1]:53655 [200]: GET /
+[Mon May 18 13:13:50 2026] [::1]:53655 Closing
+[Mon May 18 13:13:50 2026] [::1]:60497 Accepted
+[Mon May 18 13:13:50 2026] [::1]:60497 [200]: GET /assets/css/luxury.css
+[Mon May 18 13:13:50 2026] [::1]:55574 Accepted
+[Mon May 18 13:13:50 2026] [::1]:54617 Accepted
+[Mon May 18 13:13:50 2026] [::1]:55574 [404]: GET /assets/images/hero.jpg - No such file or directory
+[Mon May 18 13:13:50 2026] [::1]:54617 [404]: GET /assets/images/about-1.jpg - No such file or directory
+[Mon May 18 13:13:50 2026] [::1]:60497 Closing
+[Mon May 18 13:13:50 2026] [::1]:55574 Closing
+[Mon May 18 13:13:50 2026] [::1]:54617 Closing
+[Mon May 18 13:13:50 2026] [::1]:61681 Accepted
+[Mon May 18 13:13:50 2026] [::1]:61681 [404]: GET /assets/images/mumbai-night.jpg - No such file or directory
+[Mon May 18 13:13:50 2026] [::1]:65484 Accepted
+[Mon May 18 13:13:50 2026] [::1]:61681 Closing
+[Mon May 18 13:13:50 2026] [::1]:65484 [200]: GET /assets/js/luxury.js
+[Mon May 18 13:13:50 2026] [::1]:65484 Closing
