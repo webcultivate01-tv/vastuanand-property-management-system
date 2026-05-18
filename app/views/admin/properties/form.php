@@ -1,8 +1,11 @@
-<?php $view->extend('layouts.admin'); $p = $property; $isEdit = !empty($p); ?>
+﻿<?php $view->extend('layouts.admin'); $p = $property; $isEdit = !empty($p); ?>
 <?php $view->section('content'); ?>
 
-<div class="flex justify-between items-center mb-32">
-  <div><span class="eyebrow"><?= $isEdit ? 'EDIT' : 'CREATE' ?></span><h1 style="font-family:'Cormorant Garamond',serif;font-size:40px;margin:8px 0 0"><?= $isEdit ? e($p['title']) : 'New Property' ?></h1></div>
+<div class="admin-page-head">
+  <div>
+    <h1><?= $isEdit ? 'Edit Property' : 'New Property' ?></h1>
+    <p><?= $isEdit ? e($p['title']) : 'Add a new listing to the catalog.' ?></p>
+  </div>
   <a href="/admin/properties" class="btn btn-ghost">← Back</a>
 </div>
 

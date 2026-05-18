@@ -1,4 +1,4 @@
-<?php $view->extend('layouts.main'); $s = $service; ?>
+﻿<?php $view->extend('layouts.main'); $s = $service; ?>
 <?php $view->section('content'); ?>
 
 <section style="padding:140px 0 80px;background:linear-gradient(180deg,#000,var(--ink-2))">
@@ -27,7 +27,7 @@
       <aside data-reveal>
         <div class="glass" style="padding:32px">
           <span class="eyebrow">START NOW</span>
-          <h3 style="font-family:'Cormorant Garamond',serif;font-size:28px;margin:14px 0 18px">Book a complimentary consultation</h3>
+          <h3 style="font-size:28px;margin:14px 0 18px">Book a complimentary consultation</h3>
           <form data-ajax action="/contact" method="post">
             <input type="hidden" name="subject" value="<?= e($s['title']) ?>">
             <div class="form-group"><label>Name</label><input class="form-control" name="name" required></div>

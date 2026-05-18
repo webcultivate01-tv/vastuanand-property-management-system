@@ -1,4 +1,4 @@
-<?php /** @var \App\Core\View $view */ $view->extend('layouts.main'); $p = $property; ?>
+﻿<?php /** @var \App\Core\View $view */ $view->extend('layouts.main'); $p = $property; ?>
 <?php $view->section('content'); ?>
 
 <!-- Gallery hero -->
@@ -95,7 +95,7 @@
       <!-- Sidebar: enquiry + schedule visit -->
       <aside data-reveal style="position:sticky;top:120px;align-self:start">
         <div class="glass" style="padding:32px">
-          <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;margin:0 0 6px">Interested? Talk to an advisor.</h3>
+          <h3 style="font-size:26px;margin:0 0 6px">Interested? Talk to an advisor.</h3>
           <p class="muted" style="font-size:13px;margin-bottom:24px">We respond on WhatsApp within 15 minutes.</p>
           <form data-ajax action="/inquiry" method="post">
             <input type="hidden" name="property_id" value="<?= e($p['id'] ?? '') ?>">

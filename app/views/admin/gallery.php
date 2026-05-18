@@ -1,7 +1,12 @@
-<?php $view->extend('layouts.admin'); ?>
+﻿<?php $view->extend('layouts.admin'); ?>
 <?php $view->section('content'); ?>
 
-<h1 style="font-family:'Cormorant Garamond',serif;font-size:44px;margin:0 0 32px">Gallery</h1>
+<div class="admin-page-head">
+  <div>
+    <h1>Gallery</h1>
+    <p>Project visuals and marketing imagery.</p>
+  </div>
+</div>
 
 <form method="post" action="/admin/gallery" class="admin-card mb-32">
   <?= csrf_field() ?>

@@ -1,7 +1,12 @@
-<?php $view->extend('layouts.admin'); ?>
+﻿<?php $view->extend('layouts.admin'); ?>
 <?php $view->section('content'); ?>
 
-<h1 style="font-family:'Cormorant Garamond',serif;font-size:44px;margin:0 0 32px">Site Settings</h1>
+<div class="admin-page-head">
+  <div>
+    <h1>Site Settings</h1>
+    <p>Brand defaults, contact information and SEO basics.</p>
+  </div>
+</div>
 
 <form method="post" action="/admin/settings" class="admin-card">
   <?= csrf_field() ?>

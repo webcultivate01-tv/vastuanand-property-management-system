@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -8,7 +8,7 @@
 </head>
 <body style="min-height:100vh;display:grid;place-items:center;text-align:center;padding:24px">
   <div>
-    <div style="font-family:'Cormorant Garamond',serif;font-size:200px;color:var(--gold);line-height:1">404</div>
+    <div style="font-size:200px;color:var(--gold);line-height:1">404</div>
     <h1 class="display" style="font-size:36px;margin:18px 0 12px">This address doesn't exist.</h1>
     <p class="muted" style="max-width:520px;margin:0 auto 32px;line-height:1.7">The page you're looking for has been moved, renamed, or never existed. Let's take you home.</p>
     <a href="/" class="btn btn-primary">Return Home</a>

@@ -1,4 +1,4 @@
-<?php /** @var \App\Core\View $view */ $view->extend('layouts.main'); ?>
+﻿<?php /** @var \App\Core\View $view */ $view->extend('layouts.main'); ?>
 <?php $view->section('content'); ?>
 
 <section style="padding:140px 0 60px;background:linear-gradient(180deg,#000,var(--ink-2))">
@@ -56,7 +56,7 @@
 
     <?php if (empty($result['data'])): ?>
       <div class="glass" style="padding:80px;text-align:center">
-        <h3 style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold)">No properties match your filters yet.</h3>
+        <h3 style="font-size:32px;color:var(--gold)">No properties match your filters yet.</h3>
         <p class="muted" style="margin-top:12px">Try expanding your budget, BHK or location — or <a href="/contact" class="gold">talk to an advisor</a> for a private match.</p>
       </div>
     <?php else: ?>

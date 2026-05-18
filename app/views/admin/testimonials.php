@@ -1,12 +1,17 @@
-<?php $view->extend('layouts.admin'); ?>
+﻿<?php $view->extend('layouts.admin'); ?>
 <?php $view->section('content'); ?>
 
-<h1 style="font-family:'Cormorant Garamond',serif;font-size:44px;margin:0 0 32px">Testimonials</h1>
+<div class="admin-page-head">
+  <div>
+    <h1>Reviews</h1>
+    <p>Approved testimonials shown across the site.</p>
+  </div>
+</div>
 
 <div class="grid cols-2" style="gap:24px">
   <form method="post" action="/admin/testimonials" class="admin-card">
     <?= csrf_field() ?>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:24px;margin:0 0 18px">Add Testimonial</h2>
+    <h2 style="font-size:18px;margin:0 0 18px">Add Review</h2>
     <div class="form-group"><label>Name</label><input class="form-control" name="name" required></div>
     <div class="form-group"><label>Role / Location</label><input class="form-control" name="role" placeholder="Home Buyer, Bandra"></div>
     <div class="form-group"><label>Message</label><textarea class="form-control" name="message" rows="4" required></textarea></div>

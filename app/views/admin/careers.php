@@ -1,12 +1,17 @@
-<?php $view->extend('layouts.admin'); ?>
+﻿<?php $view->extend('layouts.admin'); ?>
 <?php $view->section('content'); ?>
 
-<h1 style="font-family:'Cormorant Garamond',serif;font-size:44px;margin:0 0 32px">Careers</h1>
+<div class="admin-page-head">
+  <div>
+    <h1>Careers</h1>
+    <p>Open positions and applicant tracking.</p>
+  </div>
+</div>
 
 <div class="grid cols-2" style="gap:24px">
   <form method="post" action="/admin/careers" class="admin-card">
     <?= csrf_field() ?>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:24px;margin:0 0 18px">Post Job</h2>
+    <h2 style="font-size:18px;margin:0 0 18px">Post Job</h2>
     <div class="form-group"><label>Title</label><input class="form-control" name="title" required></div>
     <div class="form-group"><label>Department</label><input class="form-control" name="dept"></div>
     <div class="form-group"><label>Location</label><input class="form-control" name="location" value="Mumbai"></div>

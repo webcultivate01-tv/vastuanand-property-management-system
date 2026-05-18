@@ -1,8 +1,11 @@
-<?php $view->extend('layouts.admin'); $b = $blog; $isEdit = !empty($b); ?>
+﻿<?php $view->extend('layouts.admin'); $b = $blog; $isEdit = !empty($b); ?>
 <?php $view->section('content'); ?>
 
-<div class="flex justify-between items-center mb-32">
-  <h1 style="font-family:'Cormorant Garamond',serif;font-size:40px;margin:0"><?= $isEdit ? 'Edit Post' : 'New Post' ?></h1>
+<div class="admin-page-head">
+  <div>
+    <h1><?= $isEdit ? 'Edit Post' : 'New Post' ?></h1>
+    <p><?= $isEdit ? 'Update existing article content and metadata.' : 'Draft a new blog article for the public site.' ?></p>
+  </div>
   <a href="/admin/blogs" class="btn btn-ghost">← Back</a>
 </div>
 

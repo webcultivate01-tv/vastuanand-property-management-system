@@ -1,7 +1,12 @@
-<?php $view->extend('layouts.admin'); ?>
+﻿<?php $view->extend('layouts.admin'); ?>
 <?php $view->section('content'); ?>
 
-<h1 style="font-family:'Cormorant Garamond',serif;font-size:44px;margin:0 0 32px">Popups</h1>
+<div class="admin-page-head">
+  <div>
+    <h1>Popups</h1>
+    <p>Site-wide promotional modals and announcement banners.</p>
+  </div>
+</div>
 
 <form method="post" action="/admin/popups" class="admin-card mb-32">
   <?= csrf_field() ?>

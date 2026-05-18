@@ -1,9 +1,12 @@
-<?php $view->extend('layouts.admin'); ?>
+﻿<?php $view->extend('layouts.admin'); ?>
 <?php $view->section('content'); ?>
 
-<div class="flex justify-between items-center mb-32">
-  <div><span class="eyebrow">CRM</span><h1 style="font-family:'Cormorant Garamond',serif;font-size:44px;margin:8px 0 0">Leads</h1></div>
-  <a href="/admin/leads/export" class="btn btn-primary">⬇ Export CSV</a>
+<div class="admin-page-head">
+  <div>
+    <h1>Inquiries</h1>
+    <p>All leads captured across contact forms, WhatsApp and chat.</p>
+  </div>
+  <a href="/admin/leads/export" class="btn btn-primary">Export CSV</a>
 </div>
 
 <form method="get" class="flex gap-16 mb-24">
@@ -21,7 +24,7 @@
   </select>
 </form>
 
-<div class="admin-card">
+<div class="admin-card" style="padding:0;overflow:hidden">
   <table class="admin-table">
     <thead><tr><th>Date</th><th>Name</th><th>Phone</th><th>Email</th><th>Source</th><th>Status</th><th></th></tr></thead>
     <tbody>

@@ -1,4 +1,4 @@
-<?php $view->extend('layouts.main'); $brand = config('app.brand'); ?>
+﻿<?php $view->extend('layouts.main'); $brand = config('app.brand'); ?>
 <?php $view->section('content'); ?>
 
 <section style="padding:140px 0 60px;background:linear-gradient(180deg,#000,var(--ink-2))">
@@ -17,7 +17,7 @@
           <?php if (!empty($_GET['sent'])): ?>
             <div style="padding:14px 18px;background:rgba(46,160,67,0.15);border:1px solid #2ea043;border-radius:10px;margin-bottom:22px;color:#7ee787">Thank you. Our team will reach out within 24 hours.</div>
           <?php endif; ?>
-          <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;margin:0 0 20px">Send a Message</h2>
+          <h2 style="font-size:32px;margin:0 0 20px">Send a Message</h2>
           <form action="/contact" method="post">
             <?= csrf_field() ?>
             <div class="grid cols-2" style="gap:16px">
@@ -44,7 +44,7 @@
       </div>
 
       <div data-reveal data-reveal-delay="200">
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;margin:0 0 28px">Reach Out to Our Experts</h2>
+        <h2 style="font-size:32px;margin:0 0 28px">Reach Out to Our Experts</h2>
 
         <?php foreach ([
           ['Phone',    $brand['phone'], 'tel:' . $brand['phone'],     'M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z'],

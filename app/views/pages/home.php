@@ -1,4 +1,4 @@
-<?php /** @var \App\Core\View $view */ $view->extend('layouts.main'); ?>
+﻿<?php /** @var \App\Core\View $view */ $view->extend('layouts.main'); ?>
 <?php $view->section('content'); ?>
 
 <!-- ═══════════ HERO ═══════════ -->
@@ -102,7 +102,7 @@
                style="width:100%;height:100%;object-fit:cover">
           <div style="position:absolute;left:24px;bottom:24px;right:24px">
             <div class="glass" style="padding:18px 22px">
-              <div style="font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--gold);line-height:1">350<span style="font-size:20px">+</span></div>
+              <div style="font-size:34px;color:var(--gold);line-height:1">350<span style="font-size:20px">+</span></div>
               <div class="eyebrow" style="margin-top:4px">Happy Mumbai Clients</div>
             </div>
           </div>

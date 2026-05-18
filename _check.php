@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Vastu Anand · Hostinger diagnostic page.
  * Upload this file to your public_html and visit  https://yoursite.com/_check.php
@@ -41,7 +41,7 @@ $writableUp   = is_writable($base . '/public/uploads') || @mkdir($base . '/publi
 
 ?><!doctype html><html><head><title>Vastu Anand · System Check</title>
 <style>body{background:#050505;color:#f5f2ec;font-family:system-ui,sans-serif;margin:0;padding:32px}
-h1{font-family:'Cormorant Garamond',serif;color:#C9A35B;font-weight:300;font-size:36px;margin:0 0 8px}
+h1{color:#C9A35B;font-weight:300;font-size:36px;margin:0 0 8px}
 .box{max-width:780px;margin:0 auto;background:#0f0f0f;border:1px solid #222;border-radius:14px;overflow:hidden}
 table{width:100%;border-collapse:collapse;font-size:14px}
 .hd{padding:24px 28px;border-bottom:1px solid #222}

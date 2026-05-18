@@ -1,12 +1,15 @@
-<?php $view->extend('layouts.admin'); ?>
+﻿<?php $view->extend('layouts.admin'); ?>
 <?php $view->section('content'); ?>
 
-<div class="flex justify-between items-center mb-32">
-  <div><span class="eyebrow">CONTENT</span><h1 style="font-family:'Cormorant Garamond',serif;font-size:44px;margin:8px 0 0">Blog Posts</h1></div>
+<div class="admin-page-head">
+  <div>
+    <h1>Blog Posts</h1>
+    <p>Editorial content driving SEO and engagement.</p>
+  </div>
   <a href="/admin/blogs/create" class="btn btn-primary">+ New Post</a>
 </div>
 
-<div class="admin-card">
+<div class="admin-card" style="padding:0;overflow:hidden">
   <table class="admin-table">
     <thead><tr><th>Title</th><th>Category</th><th>Published</th><th></th></tr></thead>
     <tbody>
