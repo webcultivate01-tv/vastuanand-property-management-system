@@ -1,5 +1,6 @@
-# Dependencies (installed by Hostinger build step)
-/vendor/
+# Dependencies are committed so Hostinger Git deploy skips the build step
+# (build container lacks ext-mongodb and `composer install` fails there).
+# /vendor/
 
 # Environment & local config (NEVER commit secrets)
 .env
