@@ -23,7 +23,11 @@
 <!-- Swiper styles (testimonials carousel) -->
 <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
 
-<link rel="stylesheet" href="<?= asset('css/luxury.css') ?>">
+<?php
+  $cssPath = __DIR__ . '/../../../public/assets/css/luxury.css';
+  $cssVer  = is_file($cssPath) ? filemtime($cssPath) : '1';
+?>
+<link rel="stylesheet" href="<?= asset('css/luxury.css') ?>?v=<?= $cssVer ?>">
 
 <link rel="icon" href="<?= asset('images/favicon.svg') ?>" type="image/svg+xml">
 
