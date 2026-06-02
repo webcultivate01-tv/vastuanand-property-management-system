@@ -66,7 +66,7 @@ $maxBar = max(array_column($months, 'val')) ?: 1;
         <div class="admin-prop-rank">#<?= $i + 1 ?></div>
         <div class="admin-prop-thumb">
           <?php if (!empty($p['cover'])): ?>
-            <img src="<?= e($p['cover']) ?>" alt="" onerror="this.style.display='none'">
+            <img src="<?= e(cld($p['cover'], 200)) ?>" alt="" onerror="this.style.display='none'">
           <?php endif; ?>
         </div>
         <div class="admin-prop-info">
@@ -294,6 +294,49 @@ $maxBar = max(array_column($months, 'val')) ?: 1;
     <div class="v"><?= $subscribers ?></div>
     <div class="trend"><?= $testimonials ?> reviews</div>
   </div>
+</div>
+
+<!-- Activity feed -->
+<div class="admin-card mb-24">
+  <div class="admin-card__head">
+    <div class="admin-card__title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+      Activity Feed
+    </div>
+    <span class="admin-card__pill">Recent events</span>
+  </div>
+
+  <?php
+  $iconMap = [
+    'lead'     => ['#F59E0B', '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'],
+    'property' => ['#4F46E5', '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/>'],
+    'blog'     => ['#10B981', '<path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/>'],
+    'review'   => ['#EC4899', '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>'],
+  ];
+  ?>
+
+  <?php if (empty($activity)): ?>
+    <p class="muted" style="padding:20px 0;margin:0">No activity yet. As leads come in or content is added, the timeline will populate here.</p>
+  <?php else: ?>
+    <ul class="admin-feed">
+      <?php foreach ($activity as $ev):
+        [$color, $svg] = $iconMap[$ev['type']] ?? ['#94A3B8', '<circle cx="12" cy="12" r="4"/>'];
+      ?>
+        <li>
+          <a href="<?= e($ev['href']) ?>">
+            <span class="admin-feed__dot" style="background:<?= $color ?>1A;color:<?= $color ?>">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><?= $svg ?></svg>
+            </span>
+            <span class="admin-feed__body">
+              <strong><?= e($ev['title']) ?></strong>
+              <span class="muted"><?= e($ev['meta']) ?></span>
+            </span>
+            <span class="admin-feed__when muted"><?= e(!empty($ev['when']) && is_string($ev['when']) ? substr($ev['when'], 0, 16) : '') ?></span>
+          </a>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+  <?php endif; ?>
 </div>
 
 <!-- Recent leads table -->

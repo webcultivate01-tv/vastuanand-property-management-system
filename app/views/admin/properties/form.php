@@ -63,7 +63,7 @@
         <label class="va-uploader__slot" data-slot="<?= $i ?>">
           <input type="file" name="images[]" accept="image/*" data-slot="<?= $i ?>">
           <input type="hidden" name="existing_images[]" value="<?= e($existing ?? '') ?>">
-          <div class="va-uploader__preview" <?= $existing ? 'style="background-image:url(' . e($existing) . ')"' : '' ?>>
+          <div class="va-uploader__preview" <?= $existing ? 'style="background-image:url(' . e(cld($existing, 400)) . ')"' : '' ?>>
             <?php if (!$existing): ?>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
               <span>Image <?= $i + 1 ?><?= $i === 0 ? ' (cover)' : '' ?></span>
@@ -77,6 +77,12 @@
 
   <div class="grid cols-2" style="gap:18px;margin-top:28px;padding-top:24px;border-top:1px solid var(--line)">
     <div class="form-group" style="grid-column:1 / -1"><label>Gallery URLs (one per line) — optional, in addition to uploads</label><textarea class="form-control" name="gallery_urls" rows="3" placeholder="https://..."><?= e(implode("\n", $p['gallery_urls'] ?? [])) ?></textarea></div>
+
+    <div class="form-group" style="grid-column:1 / -1">
+      <label>YouTube Video URL (optional)</label>
+      <input class="form-control" name="video_url" value="<?= e($p['video_url'] ?? '') ?>" placeholder="https://www.youtube.com/watch?v=…  or  https://youtu.be/…">
+      <small class="muted" style="font-size:12px">Paste a YouTube link — it will be embedded on the property detail page. Supports watch, youtu.be, shorts, and embed URLs.</small>
+    </div>
 
     <div class="form-group"><label>Tags (comma separated)</label><input class="form-control" name="tags" value="<?= e(implode(',', $p['tags'] ?? [])) ?>" placeholder="Sea Facing, Ready to Move"></div>
     <div class="form-group"><label>Amenities (comma separated)</label><input class="form-control" name="amenities" value="<?= e(implode(',', $p['amenities'] ?? [])) ?>" placeholder="Pool, Gym, Security"></div>

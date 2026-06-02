@@ -226,8 +226,8 @@ $sColl = Database::collection('settings');
 foreach ([
     'hero_headline' => 'Find Your Perfect Address in Mumbai\'s Finest Locations.',
     'hero_subtitle' => 'Curated luxury apartments, sea-facing penthouses and private villas — handpicked across Bandra, BKC, Powai, Worli and beyond.',
-    'phone_primary' => '+91 9876543210',
-    'whatsapp_number' => '919876543210',
+    'phone_primary' => '+91 9320265626',
+    'whatsapp_number' => '919320265626',
     'email_primary' => 'info@vastuanandm.com',
     'instagram_url' => 'https://instagram.com/vastuanand',
     'facebook_url'  => 'https://facebook.com/vastuanand',

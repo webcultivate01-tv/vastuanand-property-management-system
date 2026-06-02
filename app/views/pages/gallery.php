@@ -14,7 +14,7 @@
     <div class="grid cols-4" style="gap:14px">
       <?php foreach ($items as $i => $g): ?>
         <div data-reveal data-reveal-delay="<?= ($i % 4) * 100 ?>" style="aspect-ratio:<?= $i % 3 === 0 ? '3/4' : '4/3' ?>;border-radius:14px;overflow:hidden;background:#111">
-          <img src="<?= e($g['image']) ?>" alt="<?= e($g['caption'] ?? '') ?>"
+          <img src="<?= e(cld($g['image'], 800)) ?>" alt="<?= e($g['caption'] ?? '') ?>"
                style="width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)"
                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"
                onerror="this.src='https://picsum.photos/600/600?random=<?= $i ?>'">

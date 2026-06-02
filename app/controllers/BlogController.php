@@ -26,12 +26,44 @@ final class BlogController extends Controller
     public function show(string $slug): void
     {
         $blog = Blog::bySlug($slug);
+        $usedFallback = false;
         if (!$blog) {
             $blog = array_filter($this->fallback(), fn($b) => $b['slug'] === $slug);
             $blog = $blog ? array_values($blog)[0] : null;
+            $usedFallback = (bool)$blog;
         }
         if (!$blog) Response::notFound();
-        $this->view('pages.blog-detail', ['title' => $blog['title'] . ' — Vastu Anand', 'blog' => $blog]);
+
+        // Related: same category first, then most recent. Excludes the current post.
+        $related = [];
+        if (!$usedFallback) {
+            $cat = trim((string)($blog['category'] ?? ''));
+            if ($cat !== '') {
+                $related = Blog::all(
+                    ['published' => true, 'category' => $cat, 'slug' => ['$ne' => $blog['slug']]],
+                    ['limit' => 3, 'sort' => ['publishedAt' => -1]]
+                );
+            }
+            if (count($related) < 3) {
+                $existing = array_column($related, 'slug');
+                $existing[] = $blog['slug'];
+                $top = Blog::all(
+                    ['published' => true, 'slug' => ['$nin' => $existing]],
+                    ['limit' => 3 - count($related), 'sort' => ['publishedAt' => -1]]
+                );
+                $related = array_merge($related, $top);
+            }
+        }
+        if (empty($related)) {
+            $related = array_values(array_filter($this->fallback(), fn($b) => $b['slug'] !== $slug));
+            $related = array_slice($related, 0, 3);
+        }
+
+        $this->view('pages.blog-detail', [
+            'title'   => $blog['title'] . ' — Vastu Anand',
+            'blog'    => $blog,
+            'related' => $related,
+        ]);
     }
 
     private function fallback(): array

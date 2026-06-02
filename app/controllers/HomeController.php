@@ -5,6 +5,7 @@ use App\Core\Controller;
 use App\Models\Property;
 use App\Models\Testimonial;
 use App\Models\Blog;
+use App\Models\FilterField;
 
 final class HomeController extends Controller
 {
@@ -21,6 +22,8 @@ final class HomeController extends Controller
             ['value' => '4+',   'label' => 'Years Experience'],
         ];
 
+        $filters = FilterField::hero() ?: $this->fallbackFilters();
+
         $this->view('pages.home', [
             'title'        => 'Luxury Real Estate Mumbai | Vastu Anand',
             'description'  => 'Discover premium luxury apartments, villas, penthouses & commercial properties in Mumbai with Vastu Anand — RERA-verified, transparent and insight-led.',
@@ -28,7 +31,43 @@ final class HomeController extends Controller
             'testimonials' => $testimonials,
             'blogs'        => $blogs,
             'stats'        => $stats,
+            'filters'      => $filters,
         ]);
+    }
+
+    /** Fallback hero filter set if the DB is empty / unreachable. */
+    private function fallbackFilters(): array {
+        return [
+            ['key' => 'q', 'label' => 'Location', 'type' => 'select', 'placeholder' => 'Any location',
+             'options' => array_map(fn($n) => ['label' => $n, 'value' => $n, 'hide' => []], ['Bandra West','Juhu','BKC','Powai','Worli','Lower Parel','Andheri','Thane','Navi Mumbai','Panvel'])],
+            ['key' => 'type', 'label' => 'Property Type', 'type' => 'select', 'placeholder' => 'Any type',
+             'options' => [
+                ['label' => 'Apartment','value' => 'Apartment','hide' => []],
+                ['label' => 'Villa','value' => 'Villa','hide' => []],
+                ['label' => 'Penthouse','value' => 'Penthouse','hide' => []],
+                ['label' => 'Studio','value' => 'Studio','hide' => []],
+                ['label' => 'Builder Floor','value' => 'Builder Floor','hide' => []],
+                ['label' => 'Farmhouse','value' => 'Farmhouse','hide' => []],
+                ['label' => 'Plot','value' => 'Plot','hide' => ['bhk']],
+                ['label' => 'Commercial','value' => 'Commercial','hide' => ['bhk']],
+             ]],
+            ['key' => 'bhk', 'label' => 'BHK', 'type' => 'select', 'placeholder' => 'Any',
+             'options' => [
+                ['label' => '1 BHK','value' => '1','hide' => []],
+                ['label' => '2 BHK','value' => '2','hide' => []],
+                ['label' => '3 BHK','value' => '3','hide' => []],
+                ['label' => '4 BHK','value' => '4','hide' => []],
+                ['label' => '5+ BHK','value' => '5','hide' => []],
+             ]],
+            ['key' => 'max', 'label' => 'Budget', 'type' => 'select', 'placeholder' => 'Any',
+             'options' => [
+                ['label' => 'Up to ₹50 L','value' => '5000000','hide' => []],
+                ['label' => 'Up to ₹1 Cr','value' => '10000000','hide' => []],
+                ['label' => 'Up to ₹3 Cr','value' => '30000000','hide' => []],
+                ['label' => 'Up to ₹7 Cr','value' => '70000000','hide' => []],
+                ['label' => 'Up to ₹20 Cr','value' => '200000000','hide' => []],
+             ]],
+        ];
     }
 
     /** Demo data used when MongoDB is empty or unreachable. */

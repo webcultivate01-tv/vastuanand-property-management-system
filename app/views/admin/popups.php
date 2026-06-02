@@ -24,7 +24,7 @@
   <?php foreach ($items as $p): ?>
     <div class="admin-card">
       <strong><?= e($p['title'] ?? '') ?></strong>
-      <?php if (!empty($p['image'])): ?><img src="<?= e($p['image']) ?>" style="margin-top:10px;border-radius:8px;width:100%;max-height:140px;object-fit:cover"><?php endif; ?>
+      <?php if (!empty($p['image'])): ?><img src="<?= e(cld($p['image'], 600)) ?>" style="margin-top:10px;border-radius:8px;width:100%;max-height:140px;object-fit:cover"><?php endif; ?>
       <p class="muted" style="font-size:13px;margin-top:8px"><?= e($p['cta'] ?? '') ?> → <?= e($p['link'] ?? '') ?></p>
     </div>
   <?php endforeach; ?>

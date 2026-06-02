@@ -54,7 +54,9 @@
 
 <?php $view->include('partials.footer'); ?>
 <?php $view->include('partials.whatsapp'); ?>
-<?php $view->include('partials.chatbot'); ?>
+<?php $view->include('partials.cookie-consent'); ?>
+<?php $view->include('partials.events'); ?>
+<?php $view->include('partials.signup-gate'); ?>
 
 <!-- Swiper for testimonials (defer so it doesn't block first paint) -->
 <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

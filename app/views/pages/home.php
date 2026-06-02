@@ -110,37 +110,32 @@
         <input type="hidden" name="listing" value="sale">
 
         <div class="va-quicksearch__grid">
-          <div class="va-quicksearch__field">
-            <label for="qs-q">Location</label>
-            <input id="qs-q" type="text" name="q" placeholder="Bandra, Powai, BKC…">
-          </div>
-          <div class="va-quicksearch__field">
-            <label for="qs-type">Property Type</label>
-            <select id="qs-type" name="type">
-              <option value="">Any type</option>
-              <option>Apartment</option><option>Villa</option><option>Penthouse</option>
-              <option>Studio</option><option>Builder Floor</option><option>Commercial</option><option>Farmhouse</option>
-            </select>
-          </div>
-          <div class="va-quicksearch__field">
-            <label for="qs-bhk">BHK</label>
-            <select id="qs-bhk" name="bhk">
-              <option value="">Any</option>
-              <option value="1">1 BHK</option><option value="2">2 BHK</option>
-              <option value="3">3 BHK</option><option value="4">4 BHK</option><option value="5">5+ BHK</option>
-            </select>
-          </div>
-          <div class="va-quicksearch__field">
-            <label for="qs-max">Budget</label>
-            <select id="qs-max" name="max">
-              <option value="">Any</option>
-              <option value="5000000">Up to ₹50 L</option>
-              <option value="10000000">Up to ₹1 Cr</option>
-              <option value="30000000">Up to ₹3 Cr</option>
-              <option value="70000000">Up to ₹7 Cr</option>
-              <option value="200000000">Up to ₹20 Cr</option>
-            </select>
-          </div>
+          <?php foreach ($filters as $f):
+            $k         = $f['key'] ?? '';
+            $label     = $f['label'] ?? '';
+            $type      = $f['type'] ?? 'select';
+            $ph        = $f['placeholder'] ?? '';
+            $opts      = $f['options'] ?? [];
+            $fieldId   = 'qs-' . $k;
+          ?>
+            <div class="va-quicksearch__field" id="<?= e($fieldId) ?>-field" data-filter-key="<?= e($k) ?>">
+              <label for="<?= e($fieldId) ?>"><?= e($label) ?></label>
+              <?php if ($type === 'select'): ?>
+                <select id="<?= e($fieldId) ?>" name="<?= e($k) ?>" data-filter-input>
+                  <option value=""><?= e($ph !== '' ? $ph : 'Any') ?></option>
+                  <?php foreach ($opts as $o): ?>
+                    <option value="<?= e($o['value'] ?? $o['label'] ?? '') ?>"
+                            data-hide="<?= e(is_array($o['hide'] ?? null) ? implode(',', $o['hide']) : '') ?>">
+                      <?= e($o['label'] ?? '') ?>
+                    </option>
+                  <?php endforeach; ?>
+                </select>
+              <?php else: ?>
+                <input id="<?= e($fieldId) ?>" type="<?= $type === 'number' ? 'number' : 'text' ?>" name="<?= e($k) ?>" placeholder="<?= e($ph) ?>" data-filter-input>
+              <?php endif; ?>
+            </div>
+          <?php endforeach; ?>
+
           <button type="submit" class="va-quicksearch__submit">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             Search
@@ -150,6 +145,46 @@
     </div>
   </div>
 </section>
+
+<script>
+  (function () {
+    var form = document.querySelector('.va-quicksearch');
+    if (!form) return;
+
+    var fieldsByKey = {};
+    form.querySelectorAll('[data-filter-key]').forEach(function (el) {
+      fieldsByKey[el.getAttribute('data-filter-key')] = el;
+    });
+
+    function sync() {
+      // first reveal everything
+      Object.values(fieldsByKey).forEach(function (el) { el.style.display = ''; });
+
+      // then collect hide-keys from every active selection
+      var hideSet = new Set();
+      form.querySelectorAll('select[data-filter-input]').forEach(function (sel) {
+        var opt = sel.options[sel.selectedIndex];
+        if (!opt) return;
+        (opt.getAttribute('data-hide') || '')
+          .split(',').map(function (s) { return s.trim(); }).filter(Boolean)
+          .forEach(function (k) { hideSet.add(k); });
+      });
+
+      hideSet.forEach(function (k) {
+        var el = fieldsByKey[k];
+        if (!el) return;
+        el.style.display = 'none';
+        var inp = el.querySelector('[data-filter-input]');
+        if (inp) inp.value = '';
+      });
+    }
+
+    form.querySelectorAll('select[data-filter-input]').forEach(function (sel) {
+      sel.addEventListener('change', sync);
+    });
+    sync();
+  })();
+</script>
 
 <!-- ═══════════ MARQUEE ═══════════ -->
 <div class="va-marquee" aria-hidden="true">
@@ -190,7 +225,7 @@
       </div>
       <div data-reveal="right" data-reveal-delay="150" class="va-vision__media">
         <div class="va-vision__img-1">
-          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=900&q=80"
+          <img src="https://images.unsplash.com/photo-1552133457-ce1d2d33cdfb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bXVtYmFpJTIwc2t5bGluZXxlbnwwfHwwfHx8MA%3D%3D"
                alt="Vastu Anand advisor consulting client" loading="lazy">
         </div>
         <div class="va-vision__img-2">
@@ -198,7 +233,7 @@
                alt="Modern luxury interior" loading="lazy">
         </div>
         <div class="va-vision__badge glass">
-          <div class="va-vision__badge-num">350<span>+</span></div>
+          <div class="va-vision__badge-num">100<span>+</span></div>
           <div class="eyebrow">Happy Mumbai Clients</div>
         </div>
       </div>
@@ -255,13 +290,24 @@
                 </span>
               <?php endif; ?>
             </div>
-            <a href="/property/<?= e($p['slug']) ?>" class="va-featured__cta">
-              View Details
+            <a href="/property/<?= e($p['slug']) ?>" class="va-featured__cta"
+               data-va-gate
+               data-property-slug="<?= e($p['slug'] ?? '') ?>"
+               data-property-title="<?= e($p['title'] ?? '') ?>"
+               data-property-id="<?= e($p['id'] ?? '') ?>">
+              View in Detail
               <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M0 5h13M9 1l4 4-4 4"/></svg>
             </a>
           </div>
         </article>
       <?php endforeach; ?>
+    </div>
+
+    <div class="va-featured__more" data-reveal>
+      <a href="/properties" class="va-cta va-cta--gold">
+        View More Properties
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M0 5h13M9 1l4 4-4 4"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -277,27 +323,37 @@
 
     <div class="va-hoods">
       <?php
+      // Mumbai-specific imagery — primary URL + fallback URL per neighbourhood.
+      // Fallback fires onerror; second fallback is a generic luxury interior.
       $hoods = [
-        ['Bandra West', '₹5-25 Cr', 'https://images.unsplash.com/photo-1577415124269-fc1140a69e91?auto=format&fit=crop&w=900&q=80', 'large'],
-        ['BKC',         '₹8-40 Cr', 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=600&q=80', 'small'],
-        ['Worli',       '₹6-30 Cr', 'https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=600&q=80', 'small'],
-        ['Powai',       '₹2-12 Cr', 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=600&q=80', 'small'],
-        ['Juhu',        '₹4-20 Cr', 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=600&q=80', 'small'],
-        ['Navi Mumbai', '₹0.6-4 Cr','https://images.unsplash.com/photo-1542621334-a254cf47733d?auto=format&fit=crop&w=900&q=80', 'large'],
+        ['Bandra West', '₹5-25 Cr', 'Boutique Living',     'https://images.unsplash.com/photo-1594817060351-8f3de84b7e0e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&w=1400&q=85', 'large'],
+        ['BKC',         '₹8-40 Cr', 'Business District',   'https://www.hotelkohinoorelite.com/blog/admin/assets/img/post/image_2024-08-14-12-22-07_66bca16fc520e.jpg',  'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=85',  'small'],
+        ['Worli',       '₹6-30 Cr', 'Sea-Link Skyline',    'https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&w=900&q=85',  'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=900&q=85',  'small'],
+        ['Powai',       '₹2-12 Cr', 'Lakeside Tech Hub',   'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=85',  'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=900&q=85',  'small'],
+        ['Juhu',        '₹4-20 Cr', 'Beachfront Heritage', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85',  'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=900&q=85',  'small'],
+        ['Navi Mumbai', '₹0.6-4 Cr','Emerging Frontier',   'https://images.unsplash.com/photo-1573132223210-d65883b944aa?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG11bWJhaXxlbnwwfHwwfHx8MA%3D%3D', 'https://images.unsplash.com/photo-1572976625828-eed5ff0c1c43?auto=format&fit=crop&w=1400&q=85', 'small'],
       ];
-      foreach ($hoods as $i => [$name, $price, $img, $size]):
+      foreach ($hoods as $i => [$name, $price, $tagline, $img, $fallback, $size]):
       ?>
         <a href="/properties?q=<?= urlencode($name) ?>" class="va-hood va-hood--<?= $size ?>" data-reveal="<?= $i % 2 === 0 ? 'left' : 'right' ?>" data-reveal-delay="<?= ($i % 3) * 100 ?>">
-          <img src="<?= e($img) ?>" alt="<?= e($name) ?> properties" loading="lazy">
+          <img src="<?= e($img) ?>" alt="<?= e($name) ?> properties" loading="lazy"
+               data-fallback="<?= e($fallback) ?>"
+               onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;this.removeAttribute('data-fallback');}else{this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80';}">
+          <span class="va-hood__index"><?= str_pad((string)($i + 1), 2, '0', STR_PAD_LEFT) ?></span>
           <div class="va-hood__overlay"></div>
           <div class="va-hood__body">
-            <span class="va-hood__price"><?= e($price) ?></span>
+            <span class="va-hood__tagline"><?= e($tagline) ?></span>
             <h3 class="va-hood__name"><?= e($name) ?></h3>
-            <span class="va-hood__arrow">
-              Explore
-              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M0 5h13M9 1l4 4-4 4"/></svg>
-            </span>
+            <div class="va-hood__meta">
+              <span class="va-hood__price"><?= e($price) ?></span>
+              <span class="va-hood__sep"></span>
+              <span class="va-hood__arrow">
+                Discover
+                <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M0 5h13M9 1l4 4-4 4"/></svg>
+              </span>
+            </div>
           </div>
+          <span class="va-hood__accent"></span>
         </a>
       <?php endforeach; ?>
     </div>
@@ -450,13 +506,20 @@
 </section>
 
 <!-- ═══════════ TESTIMONIALS ═══════════ -->
-<section style="background:var(--surface-2)">
+<section id="testimonials" style="background:var(--surface-2)">
   <div class="container-lg">
     <?php $view->include('components.section-head', [
       'eyebrow' => 'CLIENT STORIES',
       'heading' => 'What Our Mumbai <span class="gold">Clients Say</span>',
       'sub'     => 'A small sample from 350+ families and investors we\'ve had the privilege of serving.'
     ]); ?>
+
+    <div style="text-align:center;margin:-12px 0 32px" data-reveal>
+      <button type="button" class="va-cta va-cta--gold" id="vaReviewOpen">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add Your Review
+      </button>
+    </div>
 
     <div class="swiper testimonialSwiper" data-reveal>
       <div class="swiper-wrapper">
@@ -467,68 +530,136 @@
       <div class="swiper-pagination" style="position:relative;margin-top:32px"></div>
     </div>
   </div>
-</section>
 
-<!-- ═══════════ BLOG ═══════════ -->
-<section>
-  <div class="container-lg">
-    <?php $view->include('components.section-head', [
-      'eyebrow' => 'FROM OUR BLOG',
-      'heading' => 'Latest <span class="gold">Market Insights</span>',
-      'sub'     => 'Stay informed with our research on Mumbai\'s neighbourhoods, prices, and policy.'
-    ]); ?>
+  <!-- Add Review modal -->
+  <div id="vaReviewModal" class="va-review-modal" aria-hidden="true" role="dialog" aria-labelledby="vaReviewTitle">
+    <div class="va-review-modal__backdrop" data-va-review-close></div>
+    <div class="va-review-modal__card" role="document">
+      <button type="button" class="va-review-modal__close" data-va-review-close aria-label="Close">×</button>
+      <span class="eyebrow">SHARE YOUR EXPERIENCE</span>
+      <h3 id="vaReviewTitle" style="margin:6px 0 6px;font-size:24px">Add a Review</h3>
+      <p class="muted" style="margin:0 0 20px;font-size:14px">Your review will appear on the site once approved by our team.</p>
 
-    <div class="va-blog-grid" data-stagger>
-      <?php foreach ($blogs as $i => $b): ?>
-        <a href="/blog/<?= e($b['slug']) ?>" class="va-blog-card">
-          <div class="va-blog-card__img">
-            <img loading="lazy"
-                 src="<?= e($b['cover'] ?? 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80') ?>"
-                 alt="<?= e($b['title']) ?>"
-                 onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80'">
-            <span class="va-blog-card__cat"><?= e($b['category'] ?? 'Article') ?></span>
+      <form id="vaReviewForm" method="post" action="/reviews" novalidate>
+        <?= csrf_field() ?>
+        <div class="form-group">
+          <label>Your Name</label>
+          <input class="form-control" name="name" required maxlength="80">
+        </div>
+        <div class="form-group">
+          <label>Role / Location <span class="muted" style="text-transform:none;letter-spacing:0;font-weight:400">(optional)</span></label>
+          <input class="form-control" name="role" placeholder="Home Buyer, Bandra" maxlength="120">
+        </div>
+        <div class="form-group">
+          <label>Rating</label>
+          <div class="va-review-stars" data-va-stars>
+            <?php for ($i = 1; $i <= 5; $i++): ?>
+              <button type="button" class="va-review-stars__btn" data-value="<?= $i ?>" aria-label="<?= $i ?> star">★</button>
+            <?php endfor; ?>
+            <input type="hidden" name="rating" value="5">
           </div>
-          <div class="va-blog-card__body">
-            <div class="va-blog-card__meta">
-              <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><?= e($b['publishedAt'] ?? '') ?></span>
-              <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><?= e($b['readTime'] ?? '5 min') ?></span>
-            </div>
-            <h3 class="va-blog-card__title"><?= e($b['title']) ?></h3>
-            <p class="va-blog-card__excerpt"><?= e(mb_strimwidth($b['excerpt'] ?? '', 0, 140, '…')) ?></p>
-            <span class="va-blog-card__cta">View Details
-              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M0 5h13M9 1l4 4-4 4"/></svg>
-            </span>
-          </div>
-        </a>
-      <?php endforeach; ?>
+        </div>
+        <div class="form-group">
+          <label>Your Review</label>
+          <textarea class="form-control" name="message" rows="4" required minlength="10" maxlength="1000" placeholder="Tell us about your experience..."></textarea>
+        </div>
+
+        <div id="vaReviewMsg" class="va-review-modal__msg" hidden></div>
+
+        <button type="submit" class="va-cta va-cta--gold" style="width:100%;justify-content:center">
+          Submit Review
+        </button>
+      </form>
     </div>
   </div>
 </section>
 
+<style>
+  .va-review-modal{position:fixed;inset:0;z-index:9000;display:none;align-items:center;justify-content:center;padding:20px}
+  .va-review-modal.is-open{display:flex}
+  .va-review-modal__backdrop{position:absolute;inset:0;background:rgba(10,10,10,.72);backdrop-filter:blur(4px)}
+  .va-review-modal__card{position:relative;background:var(--surface,#fff);max-width:520px;width:100%;border-radius:14px;padding:32px;box-shadow:0 40px 90px rgba(0,0,0,.4);max-height:92vh;overflow-y:auto}
+  .va-review-modal__close{position:absolute;top:12px;right:12px;width:36px;height:36px;border:0;background:transparent;font-size:26px;cursor:pointer;color:#1A1A1A;line-height:1}
+  .va-review-modal__msg{padding:10px 14px;border-radius:8px;margin-bottom:14px;font-size:13px}
+  .va-review-modal__msg.is-ok{background:#E7F6E9;color:#1B5E20}
+  .va-review-modal__msg.is-err{background:#FBEAEA;color:#9F2A2A}
+  .va-review-stars{display:flex;gap:6px}
+  .va-review-stars__btn{background:none;border:0;font-size:30px;color:#D9D9D9;cursor:pointer;padding:0;line-height:1;transition:color .15s ease,transform .1s ease}
+  .va-review-stars__btn:hover,.va-review-stars__btn.is-active{color:#C9A35B}
+  .va-review-stars__btn:active{transform:scale(.92)}
+</style>
+
 <!-- ═══════════ CTA BANNER ═══════════ -->
-<section style="padding:60px 0 100px">
-  <div class="container">
-    <div class="va-cta-banner" data-reveal>
+<section class="va-cta-section va-cta-section--full">
+  <div class="va-cta-banner va-cta-banner--full" data-reveal>
       <div class="va-cta-banner__bg" aria-hidden="true">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80" alt="" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=80" alt="" loading="lazy">
       </div>
       <div class="va-cta-banner__overlay"></div>
+      <div class="va-cta-banner__glow" aria-hidden="true"></div>
+
       <div class="va-cta-banner__content">
-        <span class="eyebrow" style="color:var(--gold-2)">START YOUR JOURNEY</span>
-        <h2 class="display" style="font-size:clamp(34px,5vw,60px);margin:16px 0 18px;color:#fff;max-width:700px;margin-inline:auto">
-          Ready to discover your <span style="color:var(--gold-2)">perfect address</span>?
+        <span class="va-cta-banner__eyebrow">
+          <span class="va-cta-banner__dot"></span>
+          START YOUR JOURNEY
+        </span>
+
+        <h2 class="va-cta-banner__heading">
+          Ready to discover your <span class="va-cta-banner__accent">perfect address</span>?
         </h2>
-        <p style="max-width:600px;margin:0 auto 32px;font-size:16px;line-height:1.7;color:rgba(255,255,255,0.78)">
-          Book a complimentary consultation with our senior advisor. We will understand your goals, shortlist 5-7 matched properties, and walk you through the entire journey — quietly and professionally.
+
+        <p class="va-cta-banner__lede">
+          Book a complimentary consultation with our senior advisor. We'll understand your goals, shortlist 5–7 matched properties, and walk you through every step — quietly and professionally.
         </p>
-        <div class="flex gap-16" style="justify-content:center;flex-wrap:wrap">
-          <a href="/contact" class="btn btn-gold">Book Free Consultation</a>
-          <a href="https://wa.me/<?= e(config('app.brand.whatsapp')) ?>" class="btn" style="background:transparent;color:#fff;border-color:rgba(255,255,255,0.4)">WhatsApp Us</a>
+
+        <div class="va-cta-banner__actions">
+          <a href="/contact" class="va-cta-banner__btn va-cta-banner__btn--gold">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Book Free Consultation
+          </a>
+          <a href="https://wa.me/<?= e(config('app.brand.whatsapp')) ?>" target="_blank" rel="noopener" class="va-cta-banner__btn va-cta-banner__btn--ghost">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3 17.2L1.5 22.5l5.4-1.4A11 11 0 1 0 20.5 3.5ZM12 20a8 8 0 0 1-4.1-1.1l-.3-.2-3.2.8.9-3.2-.2-.3a8 8 0 1 1 6.9 4Zm4.5-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2 0-.2 0-.3-.1-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3 1 2.6 1.1 2.8.1.2 1.9 3 4.7 4.2 1.7.7 2.3.7 3.1.6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1Z"/></svg>
+            WhatsApp Us
+          </a>
+          <a href="tel:<?= e(config('app.brand.phone')) ?>" class="va-cta-banner__btn va-cta-banner__btn--ghost">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+            Call Now
+          </a>
+        </div>
+
+        <div class="va-cta-banner__trust">
+          <div class="va-cta-banner__trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9.4 8 10 4.5-.6 8-5 8-10V6l-8-4z"/><polyline points="9 12 11 14 15 10"/></svg>
+            <div>
+              <strong>RERA Verified</strong>
+              <span>Every listing</span>
+            </div>
+          </div>
+          <div class="va-cta-banner__trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div>
+              <strong>15-min Response</strong>
+              <span>On WhatsApp</span>
+            </div>
+          </div>
+          <div class="va-cta-banner__trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8c2 0 3.83.74 5.23 1.96"/><polyline points="20 4 20 8 16 8"/></svg>
+            <div>
+              <strong>Zero Brokerage</strong>
+              <span>For NRI buyers</span>
+            </div>
+          </div>
+          <div class="va-cta-banner__trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <div>
+              <strong>500+ Families</strong>
+              <span>Served since 2018</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 <?php $view->endSection(); ?>
 
@@ -543,5 +674,79 @@
       breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
     });
   }
+
+  // ── Add Review modal ──
+  (function () {
+    var openBtn = document.getElementById('vaReviewOpen');
+    var modal   = document.getElementById('vaReviewModal');
+    if (!openBtn || !modal) return;
+
+    var form    = document.getElementById('vaReviewForm');
+    var msgBox  = document.getElementById('vaReviewMsg');
+    var stars   = modal.querySelectorAll('[data-va-stars] .va-review-stars__btn');
+    var rating  = modal.querySelector('input[name="rating"]');
+
+    function paintStars(n) {
+      stars.forEach(function (b, i) { b.classList.toggle('is-active', (i + 1) <= n); });
+    }
+    paintStars(parseInt(rating.value, 10) || 5);
+
+    stars.forEach(function (b) {
+      b.addEventListener('mouseenter', function () { paintStars(parseInt(b.dataset.value, 10)); });
+      b.addEventListener('mouseleave', function () { paintStars(parseInt(rating.value, 10) || 5); });
+      b.addEventListener('click', function () {
+        rating.value = b.dataset.value;
+        paintStars(parseInt(b.dataset.value, 10));
+      });
+    });
+
+    function open()  { modal.classList.add('is-open');    modal.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; }
+    function close() { modal.classList.remove('is-open'); modal.setAttribute('aria-hidden', 'true');  document.body.style.overflow = ''; if (msgBox) { msgBox.hidden = true; msgBox.className = 'va-review-modal__msg'; } }
+
+    openBtn.addEventListener('click', open);
+    modal.querySelectorAll('[data-va-review-close]').forEach(function (el) { el.addEventListener('click', close); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('is-open')) close(); });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      var btn  = form.querySelector('button[type="submit"]');
+      btn.disabled = true; btn.textContent = 'Submitting…';
+      msgBox.hidden = true;
+
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/json' }
+      })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, body: j }; }); })
+        .then(function (res) {
+          if (res.ok && res.body && res.body.ok) {
+            msgBox.textContent = res.body.message || 'Thank you! Your review has been submitted for approval.';
+            msgBox.className = 'va-review-modal__msg is-ok';
+            msgBox.hidden = false;
+            form.reset();
+            rating.value = 5; paintStars(5);
+            setTimeout(close, 2400);
+          } else {
+            var errs = (res.body && res.body.errors) ? Object.values(res.body.errors).flat().join(' ') : (res.body && res.body.message) || 'Something went wrong. Please try again.';
+            msgBox.textContent = errs;
+            msgBox.className = 'va-review-modal__msg is-err';
+            msgBox.hidden = false;
+          }
+        })
+        .catch(function () {
+          msgBox.textContent = 'Network error. Please try again.';
+          msgBox.className = 'va-review-modal__msg is-err';
+          msgBox.hidden = false;
+        })
+        .finally(function () {
+          btn.disabled = false; btn.textContent = 'Submit Review';
+        });
+    });
+
+    // Auto-open if URL has #review-add
+    if (location.hash === '#review-add') open();
+  })();
 </script>
 <?php $view->endSection(); ?>

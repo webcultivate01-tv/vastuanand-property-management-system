@@ -60,7 +60,31 @@ if (!function_exists('public_path')) {
 
 if (!function_exists('url')) {
     function url(string $path = ''): string {
-        return config('app.url') . '/' . ltrim($path, '/');
+        $base = (string) config('app.url');
+
+        // Auto-detect: if APP_URL is empty, points at localhost, or doesn't
+        // match the current host, use the request host instead. This lets the
+        // same code run on localhost, Hostinger preview, and production
+        // without editing .env per environment.
+        $useDetected = $base === ''
+            || str_contains($base, 'localhost')
+            || str_contains($base, '127.0.0.1');
+
+        if (!$useDetected && !empty($_SERVER['HTTP_HOST'])) {
+            $envHost = parse_url($base, PHP_URL_HOST);
+            if ($envHost !== null && strcasecmp($envHost, $_SERVER['HTTP_HOST']) !== 0) {
+                $useDetected = true;
+            }
+        }
+
+        if ($useDetected && !empty($_SERVER['HTTP_HOST'])) {
+            $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+                || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https')
+                || (($_SERVER['SERVER_PORT'] ?? '') === '443');
+            $base = ($https ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'];
+        }
+
+        return rtrim($base, '/') . '/' . ltrim($path, '/');
     }
 }
 
@@ -142,6 +166,35 @@ if (!function_exists('slug')) {
     }
 }
 
+if (!function_exists('cld')) {
+    function cld(?string $url, $width = null): string {
+        $url = (string)($url ?? '');
+        if ($url === '' || !str_contains($url, 'res.cloudinary.com')) return $url;
+        if (!preg_match('#/(image|video|raw)/upload/#', $url, $m, PREG_OFFSET_CAPTURE)) return $url;
+
+        $insertAt = $m[0][1] + strlen($m[0][0]);
+        $rest     = substr($url, $insertAt);
+
+        $parts = ['f_auto', 'q_auto'];
+        if ($width !== null && (int)$width > 0) $parts[] = 'w_' . (int)$width . ',c_limit,dpr_auto';
+
+        if (preg_match('#^(f_auto|q_auto|w_\d+|h_\d+|c_[a-z]+|dpr_)#', $rest)) {
+            $segments = explode('/', $rest, 2);
+            $existing = explode(',', $segments[0]);
+            foreach ($parts as $p) {
+                $key = explode('_', $p, 2)[0] . '_';
+                $hasKey = false;
+                foreach ($existing as $e) { if (str_starts_with($e, $key)) { $hasKey = true; break; } }
+                if (!$hasKey) $existing[] = $p;
+            }
+            $rest = implode(',', $existing) . (isset($segments[1]) ? '/' . $segments[1] : '');
+            return substr($url, 0, $insertAt) . $rest;
+        }
+
+        return substr($url, 0, $insertAt) . implode(',', $parts) . '/' . $rest;
+    }
+}
+
 if (!function_exists('logger')) {
     function logger(string $level, string $message, array $context = []): void {
         $file = base_path('storage/logs/app.log');
@@ -152,5 +205,25 @@ if (!function_exists('logger')) {
             $context ? json_encode($context, JSON_UNESCAPED_UNICODE) : ''
         );
         @file_put_contents($file, $line, FILE_APPEND | LOCK_EX);
+    }
+}
+
+if (!function_exists('youtube_id')) {
+    /** Extract the 11-char video id from any common YouTube URL or bare id. */
+    function youtube_id(?string $url): ?string {
+        $url = trim((string)$url);
+        if ($url === '') return null;
+        if (preg_match('#^[A-Za-z0-9_-]{11}$#', $url)) return $url;
+        if (preg_match('#(?:youtu\.be/|youtube\.com/(?:watch\?(?:.*&)?v=|embed/|shorts/|v/|live/))([A-Za-z0-9_-]{11})#', $url, $m)) {
+            return $m[1];
+        }
+        return null;
+    }
+}
+
+if (!function_exists('youtube_embed_url')) {
+    function youtube_embed_url(?string $url): ?string {
+        $id = youtube_id($url);
+        return $id ? 'https://www.youtube.com/embed/' . $id : null;
     }
 }

@@ -1,148 +1,165 @@
 <?php /** @var \App\Core\View $view */ $view->extend('layouts.main'); ?>
 <?php $view->section('content'); ?>
 
-<section class="va-hero-prop">
+<!-- Compact page header (no hero) -->
+<div class="va-prop-header">
   <div class="container-lg">
-    <div class="va-hero-prop__grid">
-      <div class="va-hero-prop__copy" data-reveal="left">
-        <div class="va-h-crumb">
-          <a href="/">Home</a> <span>/</span> <strong>Properties</strong>
-        </div>
-        <span class="eyebrow">OUR PORTFOLIO · MUMBAI</span>
-        <h1>Premium properties in <span class="va-h-accent">Mumbai</span>.</h1>
-        <p class="lede">Curated residential and commercial inventory across Mumbai's prime micro-markets — RERA-verified, transparently priced, with zero brokerage on select listings.</p>
-        <div class="flex gap-16" style="flex-wrap:wrap">
-          <a href="#filterForm" class="va-cta">Explore Listings</a>
-          <a href="/contact" class="va-cta va-cta--ghost">Talk to Advisor</a>
-        </div>
-
-        <div class="va-hero-prop__stats">
-          <div>
-            <strong>500<em>+</em></strong>
-            <span>Curated Listings</span>
-          </div>
-          <div>
-            <strong>15<em>min</em></strong>
-            <span>WhatsApp Response</span>
-          </div>
-          <div>
-            <strong>4.9<em>★</em></strong>
-            <span>Client Rating</span>
-          </div>
-        </div>
+    <div class="va-prop-header__inner">
+      <div>
+        <nav class="va-h-crumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          <strong>Properties</strong>
+        </nav>
+        <h1 class="va-prop-header__title">Properties in <span class="va-h-accent">Mumbai</span></h1>
+        <p class="va-prop-header__sub">RERA-verified listings across Mumbai's prime micro-markets — transparently priced.</p>
       </div>
-
-      <div data-reveal="right">
-        <div class="va-hero-prop__collage">
-          <div class="va-hero-prop__tile va-hero-prop__tile--lg">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=900&q=80" alt="Sea-facing residence">
-          </div>
-          <div class="va-hero-prop__tile va-hero-prop__tile--sm">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Modern interior">
-          </div>
-          <div class="va-hero-prop__tile va-hero-prop__tile--md">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=900&q=80" alt="Penthouse view">
-          </div>
-          <div class="va-hero-prop__floater">
-            <span class="dot"></span>
-            <div>
-              <strong>Live inventory</strong>
-              <span style="display:block">Updated 5 min ago</span>
-            </div>
-          </div>
+      <div class="va-prop-header__meta">
+        <div class="va-prop-header__stat">
+          <strong><?= (int)($result['total'] ?? count($result['data'] ?? [])) ?></strong>
+          <span>Listings</span>
         </div>
+        <div class="va-prop-header__stat">
+          <strong>4.9<em>★</em></strong>
+          <span>Client Rating</span>
+        </div>
+        <a href="/contact" class="va-cta va-cta--ghost va-prop-header__cta">Talk to Advisor</a>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<section style="padding:0 0 80px">
+<!-- Professional search + filter bar -->
+<div class="va-pf-wrap">
   <div class="container-lg">
-    <form class="va-prop-filters" id="filterForm" data-reveal>
-      <div class="va-prop-filters__tabs" role="tablist">
+    <form class="va-pf" id="filterForm" method="get" action="/properties">
+
+      <!-- Listing type tabs -->
+      <div class="va-pf__tabs" role="tablist">
         <?php
         $cur = $filters['listing'] ?? '';
-        $tabs = [
-          ''      => 'All Listings',
-          'sale'  => 'For Sale',
-          'rent'  => 'For Rent',
-          'lease' => 'For Lease',
-        ];
+        $tabs = ['' => 'All Listings', 'sale' => 'For Sale', 'rent' => 'For Rent', 'lease' => 'For Lease'];
         foreach ($tabs as $val => $label):
         ?>
-          <button type="button" class="va-prop-filters__tab <?= $cur === $val ? 'active' : '' ?>" data-listing="<?= e($val) ?>"><?= e($label) ?></button>
+          <button type="button" class="va-pf__tab <?= $cur === $val ? 'active' : '' ?>" data-listing="<?= e($val) ?>"><?= e($label) ?></button>
         <?php endforeach; ?>
+        <input type="hidden" name="listing" value="<?= e($cur) ?>">
       </div>
-      <input type="hidden" name="listing" value="<?= e($cur) ?>">
 
-      <div class="va-prop-filters__grid">
-        <label class="va-prop-filters__field">
-          <span>Search</span>
-          <input type="text" name="q" value="<?= e($filters['q'] ?? '') ?>" placeholder="Project, area, builder…">
-        </label>
+      <!-- Main filter bar -->
+      <div class="va-pf__bar">
 
-        <label class="va-prop-filters__field">
-          <span>Property Type</span>
+        <!-- Search -->
+        <div class="va-pf__field va-pf__field--search">
+          <svg class="va-pf__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <div style="flex:1;min-width:0">
+            <div class="va-pf__label">Search</div>
+            <input type="text" name="q" value="<?= e($filters['q'] ?? '') ?>" placeholder="Project, area, builder…" autocomplete="off">
+          </div>
+          <?php if (!empty($filters['q'])): ?>
+          <button type="button" class="va-pf__clear-input" onclick="this.closest('form').querySelector('[name=q]').value=''; this.remove();" aria-label="Clear search">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+          <?php endif; ?>
+        </div>
+
+        <!-- Property Type -->
+        <div class="va-pf__field va-pf__field--select">
+          <div class="va-pf__label">Type</div>
           <select name="type">
             <option value="">Any type</option>
             <?php foreach ($types as $t): ?>
-              <option <?= ($filters['type'] ?? '')===$t?'selected':'' ?>><?= e($t) ?></option>
+              <option <?= ($filters['type'] ?? '') === $t ? 'selected' : '' ?>><?= e($t) ?></option>
             <?php endforeach; ?>
           </select>
-        </label>
+          <svg class="va-pf__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 1l4 4 4-4"/></svg>
+        </div>
 
-        <label class="va-prop-filters__field">
-          <span>Location</span>
+        <!-- Location -->
+        <div class="va-pf__field va-pf__field--select">
+          <div class="va-pf__label">Location</div>
           <select name="location">
-            <option value="">Any location</option>
+            <option value="">Any area</option>
             <?php foreach ($locations as $l): ?>
-              <option <?= ($filters['location'] ?? '')===$l?'selected':'' ?>><?= e($l) ?></option>
+              <option <?= ($filters['location'] ?? '') === $l ? 'selected' : '' ?>><?= e($l) ?></option>
             <?php endforeach; ?>
           </select>
-        </label>
+          <svg class="va-pf__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 1l4 4 4-4"/></svg>
+        </div>
 
-        <label class="va-prop-filters__field">
-          <span>BHK</span>
+        <!-- BHK -->
+        <div class="va-pf__field va-pf__field--select">
+          <div class="va-pf__label">BHK</div>
           <select name="bhk">
             <option value="">Any</option>
             <?php foreach ([1,2,3,4,5] as $b): ?>
-              <option value="<?= $b ?>" <?= (int)($filters['bhk'] ?? 0)===$b?'selected':'' ?>><?= $b ?> BHK<?= $b===5?'+':'' ?></option>
+              <option value="<?= $b ?>" <?= (int)($filters['bhk'] ?? 0) === $b ? 'selected' : '' ?>><?= $b ?><?= $b === 5 ? '+' : '' ?> BHK</option>
             <?php endforeach; ?>
           </select>
-        </label>
-
-        <div class="va-prop-filters__field">
-          <span>Budget (₹)</span>
-          <div class="va-prop-filters__range">
-            <input name="min" type="number" value="<?= e($filters['min'] ?? '') ?>" placeholder="Min" inputmode="numeric">
-            <span>–</span>
-            <input name="max" type="number" value="<?= e($filters['max'] ?? '') ?>" placeholder="Max" inputmode="numeric">
-          </div>
+          <svg class="va-pf__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 1l4 4 4-4"/></svg>
         </div>
 
-        <button type="submit" class="va-prop-filters__submit">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          Apply Filters
+        <!-- Budget -->
+        <div class="va-pf__field va-pf__field--select">
+          <div class="va-pf__label">Budget</div>
+          <select id="budgetPreset" onchange="vaApplyBudget(this)">
+            <option value="">Any budget</option>
+            <option value="0,5000000" <?= (($filters['max']??'')==='5000000')?'selected':'' ?>>Under ₹50L</option>
+            <option value="5000000,10000000" <?= (($filters['min']??'')==='5000000'&&($filters['max']??'')==='10000000')?'selected':'' ?>>₹50L – 1Cr</option>
+            <option value="10000000,30000000" <?= (($filters['min']??'')==='10000000'&&($filters['max']??'')==='30000000')?'selected':'' ?>>₹1Cr – 3Cr</option>
+            <option value="30000000,80000000" <?= (($filters['min']??'')==='30000000'&&($filters['max']??'')==='80000000')?'selected':'' ?>>₹3Cr – 8Cr</option>
+            <option value="80000000," <?= (($filters['min']??'')==='80000000'&&empty($filters['max']))?'selected':'' ?>>₹8Cr+</option>
+          </select>
+          <svg class="va-pf__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 1l4 4 4-4"/></svg>
+          <input type="hidden" name="min" id="budgetMin" value="<?= e($filters['min'] ?? '') ?>">
+          <input type="hidden" name="max" id="budgetMax" value="<?= e($filters['max'] ?? '') ?>">
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="va-pf__submit">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Search
         </button>
       </div>
 
-      <div class="va-prop-filters__foot">
-        <div>
-          <label for="sort-select" style="margin-right:6px;font-weight:600">Sort by:</label>
-          <select id="sort-select" name="sort" style="background:transparent;border:none;font:inherit;font-weight:600;color:var(--ink);outline:none;cursor:pointer">
+      <!-- Footer: active badge + sort -->
+      <div class="va-pf__foot">
+        <div class="va-pf__foot-left">
+          <?php
+          $activeCount = 0;
+          foreach (['q','type','location','bhk','min','max'] as $k) if (!empty($filters[$k])) $activeCount++;
+          if (!empty($filters['listing'])) $activeCount++;
+          ?>
+          <?php if ($activeCount > 0): ?>
+            <span class="va-pf__badge"><?= $activeCount ?> filter<?= $activeCount > 1 ? 's' : '' ?> active</span>
+            <a href="/properties" class="va-pf__clear-all">Clear all</a>
+          <?php else: ?>
+            <span class="va-pf__hint">Use filters above to narrow your search</span>
+          <?php endif; ?>
+        </div>
+        <div class="va-pf__sort">
+          <label>Sort by</label>
+          <select name="sort" onchange="this.form.submit()">
             <option value="">Newest first</option>
-            <option value="price_low" <?= ($filters['sort'] ?? '')==='price_low'?'selected':'' ?>>Price: Low → High</option>
-            <option value="price_high" <?= ($filters['sort'] ?? '')==='price_high'?'selected':'' ?>>Price: High → Low</option>
-            <option value="oldest" <?= ($filters['sort'] ?? '')==='oldest'?'selected':'' ?>>Oldest first</option>
+            <option value="price_low"  <?= ($filters['sort'] ?? '') === 'price_low'  ? 'selected' : '' ?>>Price: Low → High</option>
+            <option value="price_high" <?= ($filters['sort'] ?? '') === 'price_high' ? 'selected' : '' ?>>Price: High → Low</option>
+            <option value="oldest"     <?= ($filters['sort'] ?? '') === 'oldest'     ? 'selected' : '' ?>>Oldest first</option>
           </select>
         </div>
-        <a href="/properties">Clear all filters</a>
       </div>
+
     </form>
+  </div>
+</div>
+
+<!-- Results -->
+<div class="va-prop-results-wrap">
+  <div class="container-lg">
 
     <div class="va-prop-results__bar" data-reveal>
       <p class="va-prop-results__count">
-        Showing <strong><?= (int)($result['total'] ?? count($result['data'] ?? [])) ?></strong> properties
+        Showing <strong><?= (int)($result['total'] ?? count($result['data'] ?? [])) ?></strong>
+        propert<?= ($result['total'] ?? count($result['data'] ?? [])) === 1 ? 'y' : 'ies' ?>
         <?php if (!empty($filters['location'])): ?> in <strong><?= e($filters['location']) ?></strong><?php endif; ?>
       </p>
       <a href="/contact" class="va-link-arrow">
@@ -177,7 +194,27 @@
         <?php endfor; ?>
       </nav>
     <?php endif; ?>
+
   </div>
-</section>
+</div>
+
+<script>
+function vaApplyBudget(sel) {
+  const parts = sel.value.split(',');
+  document.getElementById('budgetMin').value = parts[0] || '';
+  document.getElementById('budgetMax').value = parts[1] !== undefined ? parts[1] : '';
+}
+(function () {
+  const tabs = document.querySelectorAll('.va-pf__tab');
+  const inp  = document.querySelector('.va-pf input[name="listing"]');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+      inp.value = tab.dataset.listing;
+    });
+  });
+}());
+</script>
 
 <?php $view->endSection(); ?>

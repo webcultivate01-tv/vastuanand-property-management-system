@@ -24,19 +24,19 @@ $nav = [
     ['/admin/dashboard',    'Dashboard',    'dashboard'],
   ],
   'CATALOG' => [
-    ['/admin/properties',   'Properties',   'home'],
-    ['/admin/blogs',        'Blogs',        'edit'],
-    ['/admin/gallery',      'Gallery',      'image'],
+    ['/admin/properties',   'Properties',     'home'],
+    ['/admin/filters',      'Search Filters', 'search'],
+    ['/admin/blogs',        'Blogs',          'edit'],
   ],
   'CUSTOMERS' => [
+    ['/admin/users',        'Users',        'users'],
     ['/admin/leads',        'Inquiries',    'chat'],
+    ['/admin/subscribers',  'Subscribers',  'mail'],
     ['/admin/testimonials', 'Reviews',      'star'],
   ],
-  'TEAM' => [
-    ['/admin/careers',      'Careers',      'briefcase'],
-  ],
   'SYSTEM' => [
-    ['/admin/popups',       'Popups',       'megaphone'],
+    ['/admin/events',       'Events',       'megaphone'],
+    ['/admin/admins',       'Admin Users',  'users'],
     ['/admin/settings',     'Settings',     'settings'],
   ],
 ];
@@ -58,6 +58,8 @@ function admin_icon(string $key): string {
     'calc'      => '<rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="12" y1="10" x2="14" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="12" y1="14" x2="14" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/><line x1="12" y1="18" x2="14" y2="18"/>',
     'moon'      => '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>',
     'bell'      => '<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>',
+    'users'     => '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+    'mail'      => '<rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/>',
   ];
   $path = $icons[$key] ?? '';
   return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' . $path . '</svg>';
@@ -110,8 +112,11 @@ $pageTitle = $title ?? 'Admin Panel';
 
       <div class="admin-topbar__search">
         <?= admin_icon('search') ?>
-        <input type="text" placeholder="Search or jump to…" id="adminSearch">
+        <input type="text" placeholder="Search properties, leads, blogs…" id="adminSearch" autocomplete="off">
         <span class="admin-topbar__kbd">Ctrl K</span>
+        <div class="admin-search-pop" id="adminSearchPop" hidden>
+          <div class="admin-search-pop__hint">Start typing to search…</div>
+        </div>
       </div>
 
       <div class="admin-topbar__actions">
@@ -119,14 +124,14 @@ $pageTitle = $title ?? 'Admin Panel';
         <button class="admin-topbar__icon-btn" title="Theme" id="adminTheme"><?= admin_icon('moon') ?></button>
         <button class="admin-topbar__icon-btn" title="Notifications"><?= admin_icon('bell') ?><span class="badge"></span></button>
 
-        <div class="admin-topbar__user">
+        <a href="/admin/profile" class="admin-topbar__user" title="My profile" style="text-decoration:none;color:inherit">
           <div class="admin-topbar__user-info">
             <strong><?= e($adminName) ?></strong>
             <span><?= e($adminEmail) ?></span>
           </div>
           <div class="admin-topbar__avatar"><?= e($adminInitial) ?></div>
           <span class="admin-topbar__role-chip"><?= e($adminRole) ?></span>
-        </div>
+        </a>
       </div>
     </div>
 
@@ -142,12 +147,58 @@ $pageTitle = $title ?? 'Admin Panel';
 </div>
 
 <script>
-  document.addEventListener('keydown', e => {
-    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-      e.preventDefault();
-      document.getElementById('adminSearch')?.focus();
-    }
-  });
+  (function () {
+    const input = document.getElementById('adminSearch');
+    const pop   = document.getElementById('adminSearchPop');
+    if (!input || !pop) return;
+
+    let timer = null;
+    let lastQ = '';
+
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault(); input.focus(); input.select();
+      }
+      if (e.key === 'Escape' && document.activeElement === input) {
+        input.blur(); pop.hidden = true;
+      }
+    });
+
+    input.addEventListener('focus', () => { if (input.value.length >= 2) pop.hidden = false; });
+    document.addEventListener('click', (e) => {
+      if (!pop.contains(e.target) && e.target !== input) pop.hidden = true;
+    });
+
+    const render = (data) => {
+      if (!data.results || data.results.length === 0) {
+        pop.innerHTML = '<div class="admin-search-pop__hint">No matches for "' + (data.query || '') + '"</div>';
+        return;
+      }
+      pop.innerHTML = data.results.map(r =>
+        '<a class="admin-search-pop__row" href="' + r.href + '">' +
+          '<span class="admin-search-pop__type">' + r.type + '</span>' +
+          '<span class="admin-search-pop__title">' + (r.title || '').replace(/</g,'&lt;') + '</span>' +
+          '<span class="admin-search-pop__meta">' + (r.meta || '').replace(/</g,'&lt;') + '</span>' +
+        '</a>'
+      ).join('');
+    };
+
+    input.addEventListener('input', () => {
+      const q = input.value.trim();
+      if (q.length < 2) { pop.hidden = true; return; }
+      pop.hidden = false;
+      pop.innerHTML = '<div class="admin-search-pop__hint">Searching…</div>';
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        if (q === lastQ) return;
+        lastQ = q;
+        fetch('/admin/search?q=' + encodeURIComponent(q), { credentials: 'same-origin' })
+          .then(r => r.json())
+          .then(render)
+          .catch(() => { pop.innerHTML = '<div class="admin-search-pop__hint">Search unavailable</div>'; });
+      }, 220);
+    });
+  })();
 </script>
 </body>
 </html>

@@ -18,7 +18,7 @@ $alt = $alt ?? ($p['title'] ?? 'Property image');
   <div class="va-pslider__track">
     <?php foreach ($images as $i => $url): ?>
       <div class="va-pslider__slide<?= $i === 0 ? ' is-active' : '' ?>" data-i="<?= $i ?>">
-        <img loading="lazy" src="<?= e($url) ?>" alt="<?= e($alt) ?>">
+        <img loading="lazy" src="<?= e(cld($url, 1200)) ?>" alt="<?= e($alt) ?>">
       </div>
     <?php endforeach; ?>
   </div>

@@ -248,24 +248,59 @@
 </section>
 
 <!-- ═══════════ CTA BANNER ═══════════ -->
-<section style="padding:60px 0 100px">
-  <div class="container">
-    <div class="va-cta-banner" data-reveal>
-      <div class="va-cta-banner__bg" aria-hidden="true">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80" alt="" loading="lazy">
+<section class="va-cta-section--full">
+  <div class="va-cta-banner va-cta-banner--full" data-reveal>
+    <div class="va-cta-banner__bg" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=80" alt="" loading="lazy">
+    </div>
+    <div class="va-cta-banner__overlay"></div>
+    <div class="va-cta-banner__glow" aria-hidden="true"></div>
+
+    <div class="va-cta-banner__content">
+      <span class="va-cta-banner__eyebrow">
+        <span class="va-cta-banner__dot"></span>
+        START YOUR JOURNEY
+      </span>
+
+      <h2 class="va-cta-banner__heading">
+        Have a property question? <span class="va-cta-banner__accent">We'd love to listen.</span>
+      </h2>
+
+      <p class="va-cta-banner__lede">
+        Book a complimentary consultation — buying, selling, leasing or investing. We'll take the time to understand your goals before we recommend anything.
+      </p>
+
+      <div class="va-cta-banner__actions">
+        <a href="/contact" class="va-cta-banner__btn va-cta-banner__btn--gold">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Book Free Consultation
+        </a>
+        <a href="https://wa.me/<?= e(config('app.brand.whatsapp')) ?>" target="_blank" rel="noopener" class="va-cta-banner__btn va-cta-banner__btn--ghost">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3 17.2L1.5 22.5l5.4-1.4A11 11 0 1 0 20.5 3.5ZM12 20a8 8 0 0 1-4.1-1.1l-.3-.2-3.2.8.9-3.2-.2-.3a8 8 0 1 1 6.9 4Zm4.5-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2 0-.2 0-.3-.1-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3 1 2.6 1.1 2.8.1.2 1.9 3 4.7 4.2 1.7.7 2.3.7 3.1.6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1Z"/></svg>
+          WhatsApp Us
+        </a>
+        <a href="tel:<?= e(config('app.brand.phone')) ?>" class="va-cta-banner__btn va-cta-banner__btn--ghost">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          Call Now
+        </a>
       </div>
-      <div class="va-cta-banner__overlay"></div>
-      <div class="va-cta-banner__content">
-        <span class="eyebrow" style="color:var(--gold-2)">START YOUR JOURNEY</span>
-        <h2 class="display" style="font-size:clamp(32px,4.5vw,54px);margin:16px 0 18px;color:#fff;max-width:680px;margin-inline:auto">
-          Have a property question? <span style="color:var(--gold-2)">We'd love to listen.</span>
-        </h2>
-        <p style="max-width:560px;margin:0 auto 28px;font-size:15px;line-height:1.7;color:rgba(255,255,255,0.78)">
-          Book a complimentary consultation — buying, selling, leasing or investing. We'll take the time to understand your goals before we recommend anything.
-        </p>
-        <div class="flex gap-16" style="justify-content:center;flex-wrap:wrap">
-          <a href="/contact" class="btn btn-gold">Book Consultation</a>
-          <a href="https://wa.me/<?= e(config('app.brand.whatsapp')) ?>" class="btn" style="background:transparent;color:#fff;border-color:rgba(255,255,255,0.4)">WhatsApp Us</a>
+
+      <div class="va-cta-banner__trust">
+        <div class="va-cta-banner__trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9.4 8 10 4.5-.6 8-5 8-10V6l-8-4z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <div><strong>RERA Verified</strong><span>Every listing</span></div>
+        </div>
+        <div class="va-cta-banner__trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><strong>15-min Response</strong><span>On WhatsApp</span></div>
+        </div>
+        <div class="va-cta-banner__trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8c2 0 3.83.74 5.23 1.96"/><polyline points="20 4 20 8 16 8"/></svg>
+          <div><strong>Zero Brokerage</strong><span>For NRI buyers</span></div>
+        </div>
+        <div class="va-cta-banner__trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div><strong>350+ Families</strong><span>Served since 2021</span></div>
         </div>
       </div>
     </div>

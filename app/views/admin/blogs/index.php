@@ -6,8 +6,24 @@
     <h1>Blog Posts</h1>
     <p>Editorial content driving SEO and engagement.</p>
   </div>
-  <a href="/admin/blogs/create" class="btn btn-primary">+ New Post</a>
+  <?php $exportQS = http_build_query(array_filter(['category' => $_GET['category'] ?? '', 'published' => $_GET['published'] ?? ''])); ?>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <a href="/admin/blogs/export?format=csv<?= $exportQS ? '&'.$exportQS : '' ?>" class="btn btn-ghost">CSV</a>
+    <a href="/admin/blogs/export?format=excel<?= $exportQS ? '&'.$exportQS : '' ?>" class="btn btn-ghost">Excel</a>
+    <a href="/admin/blogs/export?format=pdf<?= $exportQS ? '&'.$exportQS : '' ?>" target="_blank" class="btn btn-ghost">PDF</a>
+    <a href="/admin/blogs/create" class="btn btn-primary">+ New Post</a>
+  </div>
 </div>
+
+<form method="get" class="flex gap-16 mb-24">
+  <input type="text" name="category" value="<?= e($_GET['category'] ?? '') ?>" class="form-control" placeholder="Filter by category…" style="max-width:240px">
+  <select name="published" class="form-control" style="max-width:180px">
+    <option value="">Any status</option>
+    <option value="yes" <?= ($_GET['published'] ?? '') === 'yes' ? 'selected' : '' ?>>Published</option>
+    <option value="no"  <?= ($_GET['published'] ?? '') === 'no'  ? 'selected' : '' ?>>Draft</option>
+  </select>
+  <button type="submit" class="btn btn-ghost">Apply</button>
+</form>
 
 <div class="admin-card" style="padding:0;overflow:hidden">
   <table class="admin-table">

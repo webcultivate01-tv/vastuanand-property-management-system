@@ -1,10 +1,10 @@
 <?php $current = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH); ?>
 <nav class="va-nav" id="vaNav">
   <div class="container-lg va-nav__inner">
-    <a href="/" class="va-brand">
-      <span class="va-brand__monogram">Va</span>
+    <a href="/" class="va-brand" aria-label="Vastu Anand — Home">
+      <img src="/vlogo.png" alt="Vastu Anand" class="va-brand__logo" width="52" height="52">
       <span class="va-brand__text">
-        <strong>Vastu Anand</strong>
+        <strong> वास्तूआनंद</strong>
         <span>Luxury Real Estate · Mumbai</span>
       </span>
     </a>
@@ -41,8 +41,8 @@
   <?php foreach ($links as $href => $label): ?>
     <a href="<?= $href ?>"><?= $label ?></a>
   <?php endforeach; ?>
-  <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">
-    <a href="tel:<?= e(config('app.brand.phone')) ?>" class="va-cta va-cta--ghost" style="flex:1;justify-content:center">Call Now</a>
-    <a href="/contact" class="va-cta" style="flex:1;justify-content:center">Book Consultation</a>
+  <div class="va-mobile__actions">
+    <a href="tel:<?= e(config('app.brand.phone')) ?>" class="va-cta va-cta--ghost">Call Now</a>
+    <a href="/contact" class="va-cta">Book Consultation</a>
   </div>
 </div>

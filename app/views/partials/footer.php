@@ -3,8 +3,8 @@
   <div class="container-lg">
     <div class="va-footer__grid">
       <div>
-        <a href="/" class="va-brand">
-          <span class="va-brand__monogram">Va</span>
+        <a href="/" class="va-brand" aria-label="Vastu Anand — Home">
+          <img src="/valogo.png" alt="Vastu Anand" class="va-brand__logo" width="64" height="64">
           <span class="va-brand__text">
             <strong>Vastu Anand</strong>
             <span>Luxury Real Estate · Mumbai</span>
@@ -72,7 +72,7 @@
 
     <div class="va-footer__bottom">
       <div>© <?= date('Y') ?> <?= e($brand['legal_name']) ?>. All rights reserved.</div>
-      <div>RERA: <?= e($brand['rera']) ?> &nbsp;·&nbsp; GSTIN: <?= e($brand['gst']) ?></div>
+      <div>RERA: <?= e($brand['rera']) ?></div>
     </div>
   </div>
 </footer>

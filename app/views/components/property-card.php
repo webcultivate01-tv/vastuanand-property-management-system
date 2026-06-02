@@ -11,7 +11,11 @@
     </div>
   </div>
   <div class="va-card__body">
-    <a href="/property/<?= e($p['slug']) ?>">
+    <a href="/property/<?= e($p['slug']) ?>"
+       data-va-gate
+       data-property-slug="<?= e($p['slug'] ?? '') ?>"
+       data-property-title="<?= e($p['title'] ?? '') ?>"
+       data-property-id="<?= e($p['id'] ?? '') ?>">
       <h3 class="va-card__title"><?= e($p['title']) ?></h3>
     </a>
     <div class="va-card__loc">
@@ -46,8 +50,12 @@
         </span>
       <?php endif; ?>
     </div>
-    <a href="/property/<?= e($p['slug']) ?>" class="va-card__cta">
-      View Details
+    <a href="/property/<?= e($p['slug']) ?>" class="va-card__cta"
+       data-va-gate
+       data-property-slug="<?= e($p['slug'] ?? '') ?>"
+       data-property-title="<?= e($p['title'] ?? '') ?>"
+       data-property-id="<?= e($p['id'] ?? '') ?>">
+      View in Detail
       <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M0 5h13M9 1l4 4-4 4"/></svg>
     </a>
   </div>

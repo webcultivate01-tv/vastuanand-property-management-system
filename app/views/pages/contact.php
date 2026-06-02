@@ -4,20 +4,59 @@
 <section class="va-hero-contact">
   <div class="container-lg">
     <div class="va-hero-contact__inner">
+
+      <!-- LEFT: Copy + Quick-action buttons -->
       <div class="va-hero-contact__copy" data-reveal="left">
         <div class="va-h-crumb">
           <a href="/">Home</a> <span>/</span> <strong>Contact</strong>
         </div>
-        <span class="eyebrow" style="margin-top:22px">GET IN TOUCH</span>
+        <span class="eyebrow" style="margin-top:22px">GET IN TOUCH · 15-MIN RESPONSE</span>
         <h1>Let's start a <span class="va-h-accent">conversation</span>.</h1>
-        <p class="lede">Schedule a consultation, request a property viewing, or simply ask a question. We respond on WhatsApp within 15 minutes during business hours.</p>
+        <p class="lede">Whether you're buying, selling, or simply exploring — a senior advisor is ready to listen, advise, and act. No spam, no pressure, no obligation.</p>
+
+        <!-- Quick contact actions -->
+        <div class="va-hero-contact__actions">
+          <a href="https://wa.me/<?= e(config('app.brand.whatsapp')) ?>" target="_blank" rel="noopener" class="va-hc-btn va-hc-btn--wa">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3 17.2L1.5 22.5l5.4-1.4A11 11 0 1 0 20.5 3.5ZM12 20a8 8 0 0 1-4.1-1.1l-.3-.2-3.2.8.9-3.2-.2-.3a8 8 0 1 1 6.9 4Zm4.5-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2 0-.2 0-.3-.1-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3 1 2.6 1.1 2.8.1.2 1.9 3 4.7 4.2 1.7.7 2.3.7 3.1.6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1Z"/></svg>
+            WhatsApp Now
+          </a>
+          <a href="tel:<?= e(config('app.brand.phone')) ?>" class="va-hc-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+            Call Now
+          </a>
+          <a href="#contact-form" class="va-hc-btn va-hc-btn--ghost">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Book a Meeting
+          </a>
+        </div>
 
         <div class="va-hero-contact__status">
           <span class="dot"></span>
           Advisors online · responding now
         </div>
+
+        <!-- Trust mini-strip -->
+        <div class="va-hc-trust">
+          <div class="va-hc-trust__item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4Z"/><polyline points="9 12 11 14 15 10"/></svg>
+            RERA Verified
+          </div>
+          <div class="va-hc-trust__item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            15-min Reply
+          </div>
+          <div class="va-hc-trust__item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            Senior Advisor
+          </div>
+          <div class="va-hc-trust__item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+            No Spam Calls
+          </div>
+        </div>
       </div>
 
+      <!-- RIGHT: Image collage with floating cards -->
       <div data-reveal="right">
         <div class="va-hero-contact__media">
           <div class="va-hero-contact__media-tile va-hero-contact__media-tile--main">
@@ -38,16 +77,17 @@
           </div>
 
           <div class="va-hero-contact__stat">
-            <strong>15<em>min</em></strong>
-            <span>WhatsApp reply</span>
+            <strong>350<em>+</em></strong>
+            <span>Happy Clients</span>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<section style="padding:30px 0 60px">
+<section id="contact-form" style="padding:30px 0 60px">
   <div class="container-lg">
     <div class="va-contact-grid">
 
